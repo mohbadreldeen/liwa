@@ -192,12 +192,25 @@ function liwa_scripts() {
         );
         
         // Enqueue custom frontend styles
-        wp_enqueue_style(
-            'ld-frontend-styles-css',
-            LIWA_THEME_URL . '/dist/css/frontend-styles.css',
-            array('ld-frontend-css'), // Make it depend on the main frontend CSS
-            LIWA_VERSION
-        );
+
+		if ( is_rtl() ) {
+			wp_enqueue_style(
+				'ld-frontend-styles-rtl-css',
+				LIWA_THEME_URL . '/dist/css/frontend-styles-rtl.css',
+				array('ld-frontend-css'),
+				LIWA_VERSION
+			);
+		}else {
+			wp_enqueue_style(
+				'ld-frontend-styles-css',
+				LIWA_THEME_URL . '/dist/css/frontend-styles.css',
+				array('ld-frontend-css'), // Make it depend on the main frontend CSS
+				LIWA_VERSION
+			);
+		}
+        
+
+
         
         // Localize script for AJAX
         wp_localize_script('ld-frontend-js', 'ld_ajax', array(

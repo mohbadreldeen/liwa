@@ -9,7 +9,8 @@ module.exports = (env, argv) => {
       admin: './src/js/admin.js',
       frontend: './src/js/frontend.js',
       'admin-styles': './src/scss/admin.scss',
-      'frontend-styles': './src/scss/frontend.scss'
+      'frontend-styles': './src/scss/frontend.scss',
+      'frontend-styles-rtl': './src/scss/frontend-rtl.scss'
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
