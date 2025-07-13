@@ -1,0 +1,15 @@
+.btn-primary{
+	background-color: var(--color-primary);
+	color: var(--color-text-inverse);
+	border: none;
+	padding: 15px 55px;
+	border-radius: 30px;
+	cursor: pointer;
+	font-size: 18px;
+	font-family: var(--font-family);
+	font-weight: 700;
+	a{
+		color: var(--color-text-inverse);
+		text-decoration: none;
+	}
+}

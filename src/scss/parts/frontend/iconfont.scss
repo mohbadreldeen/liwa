@@ -1,0 +1,85 @@
+/* ----------------   Icon Font --------------------------------------------- */
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/iconfont/icomoon.eot?z7rhhj');
+  src:  url('../fonts/iconfont/icomoon.eot?z7rhhj#iefix') format('embedded-opentype'),
+    url('../fonts/iconfont/icomoon.ttf?z7rhhj') format('truetype'),
+    url('../fonts/iconfont/icomoon.woff?z7rhhj') format('woff'),
+    url('../fonts/iconfont/icomoon.svg?z7rhhj#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-gear:before {
+  content: "\e900";
+}
+.icon-arrow-left:before {
+  content: "\e901";
+}
+.icon-arrow-right:before {
+  content: "\e902";
+}
+.icon-cart:before {
+  content: "\e903";
+}
+.icon-certification:before {
+  content: "\e904";
+}
+.icon-circle-check:before {
+  content: "\e905";
+}
+.icon-clock:before {
+  content: "\e906";
+}
+.icon-dates:before {
+  content: "\e907";
+}
+.icon-frame-heart:before {
+  content: "\e908";
+}
+.icon-globe:before {
+  content: "\e909";
+}
+.icon-hand:before {
+  content: "\e90a";
+}
+.icon-mail:before {
+  content: "\e90b";
+}
+.icon-map-pin:before {
+  content: "\e90c";
+}
+.icon-money:before {
+  content: "\e90d";
+}
+.icon-phone-call:before {
+  content: "\e90e";
+}
+.icon-store-location:before {
+  content: "\e90f";
+}
+.icon-target:before {
+  content: "\e910";
+}
+.icon-telephone:before {
+  content: "\e911";
+}
+.icon-up-down:before {
+  content: "\e912";
+}

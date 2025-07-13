@@ -1,0 +1,18 @@
+:root {
+	--color-primary: #77533C;
+	--color-background: #ffffff;
+	--color-background-inverse: var(--color-primary);
+	--color-heading: #000;
+	--color-text: #323334;
+	--color-heading-inverse: hsl(23, 26%, 83%);
+	--color-text-inverse: #DCDDDE;
+	--color-border: #8F9194;
+	
+	--color-link: var(--color-primary);
+	--color-link-hover: var(--color-heading);
+	--font-family: 'Almarai', sans-serif;
+	--font-size-base: 16px;
+	--line-height-base: 1.5;
+	--font-weight-normal: 400;
+	--font-weight-bold: 700;
+}
