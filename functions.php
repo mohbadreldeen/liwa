@@ -21,13 +21,13 @@ define('LIWA_THEME_URL', get_template_directory_uri());
 define('LIWA_THEME_PATH', plugin_dir_path(__FILE__));
 define('LIWA_VERSION', '1.0.0');
 
-error_log("LIWA_THEME_PATH: " . LIWA_THEME_PATH);
+ 
 function wp_log($message) {
 	if (defined('WP_DEBUG') && WP_DEBUG) {
 		error_log(print_r($message, true));
 	}
 }
-wp_log(LIWA_THEME_PATH);
+
 include_once LIWA_THEME_PATH . '/wpbackery-addons/wpbakery-addons.php';
 
 /**

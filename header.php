@@ -88,5 +88,29 @@
 					</a>
 				</div>
 			<?php endif; ?>
+
+			<?php 
+			
+			if ( function_exists( 'icl_get_languages' ) ) : 
+				$languages = icl_get_languages( 'skip_missing=0' );
+				if ( ! empty( $languages ) ) : 
+				?>
+
+					<div class="header-language-switcher">
+						<ul>
+							<?php foreach ( $languages as $lang ) : ?>
+								<li class="<?php echo $lang['active'] ? 'active' : ''; ?>">
+									<a href="<?php echo esc_url( $lang['url'] ); ?>">
+										<?php if ( ! empty( $lang['country_flag_url'] ) ) : ?>
+											<img src="<?php echo esc_url( $lang['country_flag_url'] ); ?>" alt="<?php echo esc_attr( $lang['native_name'] ); ?>" />
+										<?php endif; ?>
+										<?php echo esc_html( $lang['native_name'] ); ?>
+									</a>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+				<?php endif;
+			endif; ?>
 		</div>
 	</header><!-- #masthead -->
