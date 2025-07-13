@@ -1,0 +1,86 @@
+
+/* Language Switcher Dropdown */
+.header-language-switcher {
+  position: relative;
+  display: inline-block;
+}
+.header-language-switcher .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: none;
+  border: 0px solid var(--color-border, #e1e1e1);
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 18px;
+  color: var(--color-primary);
+  transition: all 0.2s ease;
+}
+.header-language-switcher .dropdown-toggle:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-light, #f8f9fa);
+}
+.header-language-switcher .dropdown-toggle[aria-expanded=true] {
+  border-color: var(--color-primary);
+}
+.header-language-switcher .dropdown-toggle[aria-expanded=true] .dropdown-arrow {
+  transform: rotate(180deg);
+}
+.header-language-switcher .dropdown-toggle img {
+  width: 20px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.header-language-switcher .dropdown-toggle .dropdown-arrow {
+  transition: transform 0.2s ease;
+}
+.header-language-switcher .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid var(--color-border, #e1e1e1);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+.header-language-switcher .dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.header-language-switcher .dropdown-item.active a {
+  background-color: var(--color-light, #f8f9fa);
+  color: var(--color-primary);
+}
+.header-language-switcher .dropdown-item a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+.header-language-switcher .dropdown-item a:hover {
+  background-color: var(--color-light, #f8f9fa);
+  color: var(--color-primary);
+}
+.header-language-switcher .dropdown-item a img {
+  width: 20px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 2px;
+}

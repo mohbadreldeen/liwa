@@ -8,10 +8,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+
+import languageSwitcher from './componetns/language-switcher';
+
 // Initialize Swiper when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
 
-  
+  console.log("Frontend script loaded");
   // Configure Swiper to use modules
   Swiper.use([Navigation, Pagination, Scrollbar]);
   
@@ -61,6 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
         prevEl: '.swiper-button-prev',
       },
     });
-    console.log(swiper);
+     
   }
+
+  languageSwitcher();
+  
 });

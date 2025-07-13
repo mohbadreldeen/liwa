@@ -49,16 +49,8 @@
 		</nav><!-- #site-navigation -->
 
 		<div class="header-widgets">
-			<?php if ( class_exists( 'WooCommerce' ) ) : ?>
-				<div class="header-cart">
-					<a class="cart-menu cart-contents icon-cart" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'liwa' ); ?>">
-						<?php $cart_count = WC()->cart->get_cart_contents_count(); ?>
-						<span class="cart-count"><?php echo esc_html( $cart_count ); ?></span>
-					</a>
-				</div>
-			<?php endif; ?>
-
-			
+			<?php get_template_part( 'template-parts/header/cart' ); ?>
+			<?php get_template_part( 'template-parts/header/language-switcher' ); ?>
 
 			<div>
 				<?php 
@@ -70,47 +62,7 @@
 					);
 				?>
 			</div>
-
-			<?php if ( is_user_logged_in() ) : 
-				$current_user = wp_get_current_user();
-				$avatar = get_avatar( $current_user->ID, 56 );
-				$profile_url = get_edit_profile_url( $current_user->ID );
-			?>
-				<div class="header-user-avatar">
-					<a href="<?php echo esc_url( $profile_url ); ?>" title="<?php echo esc_attr( $current_user->display_name ); ?>">
-						<?php echo $avatar; ?>
-					</a>
-				</div>
-			<?php else : ?>
-				<div class="header-login-link">
-					<a href="<?php echo esc_url( wp_login_url() ); ?>">
-						<?php esc_html_e( 'Login', 'liwa' ); ?>
-					</a>
-				</div>
-			<?php endif; ?>
-
-			<?php 
+			<?php get_template_part( 'template-parts/header/avatar' ); ?>
 			
-			if ( function_exists( 'icl_get_languages' ) ) : 
-				$languages = icl_get_languages( 'skip_missing=0' );
-				if ( ! empty( $languages ) ) : 
-				?>
-
-					<div class="header-language-switcher">
-						<ul>
-							<?php foreach ( $languages as $lang ) : ?>
-								<li class="<?php echo $lang['active'] ? 'active' : ''; ?>">
-									<a href="<?php echo esc_url( $lang['url'] ); ?>">
-										<?php if ( ! empty( $lang['country_flag_url'] ) ) : ?>
-											<img src="<?php echo esc_url( $lang['country_flag_url'] ); ?>" alt="<?php echo esc_attr( $lang['native_name'] ); ?>" />
-										<?php endif; ?>
-										<?php echo esc_html( $lang['native_name'] ); ?>
-									</a>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-					</div>
-				<?php endif;
-			endif; ?>
 		</div>
 	</header><!-- #masthead -->
