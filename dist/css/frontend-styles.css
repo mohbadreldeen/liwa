@@ -3,6 +3,7 @@
   \*****************************************************************************************************************/
 :root {
   --color-primary: #77533C;
+  --color-primary-dark: #1D130D;
   --color-background: #ffffff;
   --color-background-inverse: var(--color-primary);
   --color-heading: #000;
@@ -618,11 +619,6 @@ textarea {
   display: block;
 }
 
-.post,
-.page {
-  margin: 0 0 1.5em;
-}
-
 .updated:not(.published) {
   display: none;
 }
@@ -840,6 +836,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Layout */
 .site-main {
+  margin: 0 auto;
+  max-width: 1600px;
+}
+
+.container {
   margin: 0 auto;
   max-width: 1600px;
 }
@@ -1349,6 +1350,64 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-footer {
   background-image: url(../images/footer-optimize.webp);
+  padding: 30px 0;
+  color: var(--color-text-inverse);
+}
+
+.bottom-footer {
+  padding: 15px 0;
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-inverse);
+  line-height: 1.5em;
+  font-size: 20px;
+}
+
+.bottom-footer .widget,
+.bottom-footer p {
+  margin: 0;
+}
+
+.footer-widgets {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-column .menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.footer-column h2.widget-title {
+  font-size: 22px;
+}
+
+.footer-column .menu a {
+  display: block;
+  color: var(--color-text-inverse);
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  font-size: 18px;
+}
+
+.footer-column .menu a:hover {
+  transform: translateX(10px);
+}
+
+.footer-column .icon-container path {
+  fill: #fff;
+}
+
+.footer-column .wp-block-social-link {
+  background-color: transparent;
+}
+
+.footer-column .wp-block-social-link a {
+  padding: 0;
 }
 
 /*# sourceMappingURL=frontend-styles.css.map*/

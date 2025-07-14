@@ -150,6 +150,78 @@ function liwa_widgets_init() {
 			'after_title'   => '</h2>',
 		)
 	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Bottom', 'liwadates' ),
+			'id'            => 'footer-bottom',
+			'description'   => esc_html__( 'Widgets in this area will be shown in the footer bottom.', 'liwadates' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Column 1', 'liwadates' ),
+			'id'            => 'footer-column-1',
+			'description'   => esc_html__( 'Widgets in this area will be shown in Footer Column 1.', 'liwadates' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Column 2', 'liwadates' ),
+			'id'            => 'footer-column-2',
+			'description'   => esc_html__( 'Widgets in this area will be shown in Footer Column 2.', 'liwadates' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Column 3', 'liwadates' ),
+			'id'            => 'footer-column-3',
+			'description'   => esc_html__( 'Widgets in this area will be shown in Footer Column 3.', 'liwadates' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Column 4', 'liwadates' ),
+			'id'            => 'footer-column-4',
+			'description'   => esc_html__( 'Widgets in this area will be shown in Footer Column 4.', 'liwadates' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Column 5', 'liwadates' ),
+			'id'            => 'footer-column-5',
+			'description'   => esc_html__( 'Widgets in this area will be shown in Footer Column 5.', 'liwadates' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
 }
 add_action( 'widgets_init', 'liwa_widgets_init' );
 
