@@ -54,9 +54,7 @@
 	<?php if ( is_active_sidebar( 'footer-bottom' ) ) : ?>
 	<footer class="bottom-footer">
 		<div class="container">
-			<div class="footer-widgets">
-					<?php dynamic_sidebar( 'footer-bottom' ); ?>
-			</div>
+			<?php dynamic_sidebar( 'footer-bottom' ); ?>
 		</div>
 	</footer>
 	<?php endif; ?>

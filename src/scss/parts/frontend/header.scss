@@ -93,6 +93,32 @@
 	margin: 0;
 	padding: 0;
 }
+// Animate submenu open/close
+.main-navigation ul ul {
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px);
+	transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+	pointer-events: none;
+}
+
+.main-navigation ul li:hover > ul,
+.main-navigation ul li.focus > ul,
+.main-navigation ul ul li:hover > ul,
+.main-navigation ul ul li.focus > ul {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+	pointer-events: auto;
+}
+.main-navigation ul.sub-menu{
+	flex-direction: column;
+    padding: 15px;
+    border-radius: 10px;
+    gap: 15px !important;
+    background-color: #fff;
+    padding-left: 15px;
+}
 /* Header Widgets */
 
 .header-widgets {

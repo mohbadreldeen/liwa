@@ -10792,7 +10792,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper_css_pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! swiper/css/pagination */ "./node_modules/swiper/modules/pagination.css");
 /* harmony import */ var swiper_css_scrollbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! swiper/css/scrollbar */ "./node_modules/swiper/modules/scrollbar.css");
 /* harmony import */ var _componetns_language_switcher__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./componetns/language-switcher */ "./src/js/componetns/language-switcher.js");
-console.log("test");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 // core version + navigation, pagination modules:
 
 
@@ -10805,54 +10810,124 @@ console.log("test");
 
 // Initialize Swiper when DOM is ready
 document.addEventListener('DOMContentLoaded', function () {
-  console.log("Frontend script loaded");
   // Configure Swiper to use modules
   swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Scrollbar]);
-  var swiperElement = document.querySelector('.swiper');
-  console.log("Swiper Element:", swiperElement);
-  if (swiperElement) {
-    var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper', {
-      // Optional parameters
-      loop: true,
-      // Configure modules
-      modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Scrollbar],
-      // Items per slide
-      slidesPerView: 3,
-      // Show 3 slides at once
-      spaceBetween: 20,
-      // Space between slides in px
 
-      // Responsive breakpoints
+  // Initialize all swiper elements
+  var swiperElements = document.querySelectorAll('.swiper');
+  swiperElements.forEach(function (swiperElement) {
+    // Get configuration from data attribute
+    var config = {
+      // Default configuration
+      loop: true,
+      modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Scrollbar],
+      slidesPerView: 1,
+      spaceBetween: 20,
       breakpoints: {
-        // when window width is >= 320px
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 10
-        },
-        // when window width is >= 768px
         768: {
           slidesPerView: 2,
-          spaceBetween: 15
+          spaceBetween: 20
         },
-        // when window width is >= 1024px
         1024: {
           slidesPerView: 3,
-          spaceBetween: 20
+          spaceBetween: 30
         }
       },
-      // If we need pagination
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
-        dynamicBullets: false // Dynamic pagination bullets
+        dynamicBullets: false
       },
-      // Navigation arrows
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       }
-    });
-  }
+    };
+
+    // Override with custom configuration if provided
+    var customConfig = swiperElement.getAttribute('data-swiper-config');
+    if (customConfig) {
+      try {
+        var parsedConfig = JSON.parse(customConfig);
+        config = _objectSpread(_objectSpread({}, config), parsedConfig);
+
+        // Merge breakpoints properly
+        if (parsedConfig.breakpoints) {
+          config.breakpoints = _objectSpread(_objectSpread({}, config.breakpoints), parsedConfig.breakpoints);
+        }
+        console.log("Using custom Swiper config:", config);
+      } catch (e) {
+        console.error("Error parsing Swiper config:", e);
+      }
+    }
+
+    // Always scope navigation and pagination to this specific slider
+    var nextButton = swiperElement.querySelector('.swiper-button-next');
+    var prevButton = swiperElement.querySelector('.swiper-button-prev');
+    var pagination = swiperElement.querySelector('.swiper-pagination');
+
+    // Only add navigation if elements exist
+    if (nextButton && prevButton) {
+      config.navigation = {
+        nextEl: nextButton,
+        prevEl: prevButton
+      };
+    } else {
+      // Remove navigation if elements don't exist
+      delete config.navigation;
+    }
+
+    // Only add pagination if element exists
+    if (pagination) {
+      config.pagination = {
+        el: pagination,
+        clickable: true,
+        dynamicBullets: false
+      };
+    } else {
+      // Remove pagination if element doesn't exist
+      delete config.pagination;
+    }
+    config.on = {
+      init: function init() {
+        swiperElement.querySelectorAll(':scope > .swiper-wrapper > div').forEach(function (child) {
+          if (!child.classList.contains('swiper-slide')) {
+            console.log(child);
+            child.classList.add('swiper-slide');
+          }
+        });
+      }
+    };
+
+    // Initialize Swiper with the configuration
+    var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](swiperElement, config);
+
+    // Force show navigation arrows if they exist and ensure they stay visible
+    if (nextButton && prevButton) {
+      // Make sure navigation is visible immediately
+      nextButton.style.display = 'flex';
+      prevButton.style.display = 'flex';
+
+      // Add custom event listeners to ensure navigation stays visible
+      swiper.on('init', function () {
+        console.log("Swiper initialized with custom navigation for:", swiperElement.id);
+        if (nextButton) nextButton.style.display = 'flex';
+        if (prevButton) prevButton.style.display = 'flex';
+      });
+      swiper.on('slideChange', function () {
+        if (nextButton) nextButton.style.display = 'flex';
+        if (prevButton) prevButton.style.display = 'flex';
+      });
+      swiper.on('reachEnd', function () {
+        if (nextButton) nextButton.style.display = 'flex';
+        if (prevButton) prevButton.style.display = 'flex';
+      });
+      swiper.on('reachBeginning', function () {
+        if (nextButton) nextButton.style.display = 'flex';
+        if (prevButton) prevButton.style.display = 'flex';
+      });
+    }
+  });
   (0,_componetns_language_switcher__WEBPACK_IMPORTED_MODULE_6__["default"])();
 });
 })();
