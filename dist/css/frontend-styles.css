@@ -1870,4 +1870,43 @@ p {
   margin-top: 10px;
 }
 
+.btn-primary {
+  background-color: #95684B;
+  border-color: #95684B;
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
+  border-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
+}
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: #95684B;
+  color: #95684B;
+}
+.btn-outline:hover {
+  background-color: rgba(149, 104, 75, 0.1);
+  border-color: #95684B;
+  color: #95684B;
+}
+.btn-outline:focus {
+  box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
+}
+.btn-outline.inverse {
+  background-color: #fff;
+  border-color: #fff;
+  color: #fff;
+}
+.btn-outline.inverse:hover {
+  background-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
+  border-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
+}
+.btn-outline.inverse:focus {
+  box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
+}
+
 /*# sourceMappingURL=frontend-styles.css.map*/
