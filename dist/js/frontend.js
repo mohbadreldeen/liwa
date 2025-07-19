@@ -10793,6 +10793,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper_css_scrollbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! swiper/css/scrollbar */ "./node_modules/swiper/modules/scrollbar.css");
 /* harmony import */ var _componetns_language_switcher__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./componetns/language-switcher */ "./src/js/componetns/language-switcher.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
@@ -10929,6 +10932,614 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
   (0,_componetns_language_switcher__WEBPACK_IMPORTED_MODULE_6__["default"])();
+
+  // Initialize extended tabs
+  // initLiwaTabs();
+  // initExtendedNativeTabs();
+
+  // Initialize simple tabs
+  initSimpleLiwaTabs();
+});
+
+/**
+ * Extended Tabs with Images Functionality
+ * Handles initialization and interaction for Liwa extended tabs
+ */
+function initLiwaTabs() {
+  var tabContainers = document.querySelectorAll('.liwa-tabs-container');
+  tabContainers.forEach(function (container) {
+    liwaInitTabs(container);
+  });
+}
+
+// Global function to initialize a single tab container
+window.liwaInitTabs = function (container) {
+  if (!container) return;
+  var tabPanes = container.querySelectorAll('.liwa-tab-pane');
+  var tabNav = container.querySelector('.liwa-tabs-nav');
+  var imageSize = container.dataset.imageSize || '24';
+  var activeTabIndex = parseInt(container.dataset.activeTab || '1') - 1;
+  var animateIcons = container.dataset.animateIcons === 'yes';
+
+  // Clear existing navigation
+  tabNav.innerHTML = '';
+
+  // Create tab navigation
+  tabPanes.forEach(function (pane, index) {
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = '#';
+    a.dataset.tabIndex = index;
+
+    // Add active class to the specified tab
+    if (index === activeTabIndex) {
+      a.classList.add('active');
+      pane.classList.add('active');
+    }
+
+    // Create tab content structure
+    var title = pane.dataset.tabTitle || "Tab ".concat(index + 1);
+    var imageId = pane.dataset.tabImage;
+    var iconClass = pane.dataset.tabIcon;
+
+    // Add image if provided
+    if (imageId) {
+      var img = document.createElement('img');
+      img.classList.add('liwa-tab-image');
+      img.style.width = imageSize + 'px';
+      img.style.height = imageSize + 'px';
+      img.src = imageId; // imageId now contains the full URL
+      img.alt = title;
+      img.onerror = function () {
+        // Hide image if it fails to load
+        this.style.display = 'none';
+      };
+      a.appendChild(img);
+    }
+    // Add icon if provided and no image
+    else if (iconClass) {
+      var icon = document.createElement('i');
+      icon.className = iconClass + ' liwa-tab-icon';
+      icon.style.fontSize = imageSize + 'px';
+      a.appendChild(icon);
+    }
+
+    // Add title
+    var titleSpan = document.createElement('span');
+    titleSpan.classList.add('liwa-tab-title');
+    titleSpan.textContent = title;
+    a.appendChild(titleSpan);
+
+    // Add click event listener
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      activateTab(container, index);
+    });
+
+    // Add keyboard navigation
+    a.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activateTab(container, index);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        var currentIndex = Array.from(tabNav.querySelectorAll('a')).indexOf(this);
+        var newIndex;
+        if (e.key === 'ArrowLeft') {
+          newIndex = currentIndex > 0 ? currentIndex - 1 : tabPanes.length - 1;
+        } else {
+          newIndex = currentIndex < tabPanes.length - 1 ? currentIndex + 1 : 0;
+        }
+        tabNav.querySelectorAll('a')[newIndex].focus();
+      }
+    });
+
+    // Set accessibility attributes
+    a.setAttribute('role', 'tab');
+    a.setAttribute('aria-selected', index === activeTabIndex ? 'true' : 'false');
+    a.setAttribute('aria-controls', pane.id || "tab-pane-".concat(index));
+    a.setAttribute('tabindex', index === activeTabIndex ? '0' : '-1');
+    li.appendChild(a);
+    tabNav.appendChild(li);
+  });
+
+  // Set up tab panes with proper accessibility
+  tabPanes.forEach(function (pane, index) {
+    pane.setAttribute('role', 'tabpanel');
+    pane.setAttribute('aria-labelledby', "tab-".concat(index));
+    if (!pane.id) {
+      pane.id = "tab-pane-".concat(index);
+    }
+  });
+
+  // Set tablist role on navigation
+  tabNav.setAttribute('role', 'tablist');
+};
+
+// Function to activate a specific tab
+function activateTab(container, index) {
+  var tabPanes = container.querySelectorAll('.liwa-tab-pane');
+  var tabLinks = container.querySelectorAll('.liwa-tabs-nav a');
+
+  // Remove active class from all tabs and panes
+  tabLinks.forEach(function (link) {
+    link.classList.remove('active');
+    link.setAttribute('aria-selected', 'false');
+    link.setAttribute('tabindex', '-1');
+  });
+  tabPanes.forEach(function (pane) {
+    pane.classList.remove('active');
+  });
+
+  // Add active class to selected tab and pane
+  if (tabLinks[index]) {
+    tabLinks[index].classList.add('active');
+    tabLinks[index].setAttribute('aria-selected', 'true');
+    tabLinks[index].setAttribute('tabindex', '0');
+  }
+  if (tabPanes[index]) {
+    tabPanes[index].classList.add('active');
+  }
+
+  // Trigger custom event
+  var event = new CustomEvent('liwaTabChanged', {
+    detail: {
+      container: container,
+      activeIndex: index,
+      activePane: tabPanes[index],
+      activeLink: tabLinks[index]
+    }
+  });
+  container.dispatchEvent(event);
+}
+
+// Handle hash-based tab activation
+window.addEventListener('hashchange', function () {
+  var hash = window.location.hash;
+  if (hash.startsWith('#tab-')) {
+    var tabId = hash.substring(1);
+    var targetPane = document.getElementById(tabId);
+    if (targetPane && targetPane.classList.contains('liwa-tab-pane')) {
+      var container = targetPane.closest('.liwa-tabs-container');
+      var panes = Array.from(container.querySelectorAll('.liwa-tab-pane'));
+      var index = panes.indexOf(targetPane);
+      if (index !== -1) {
+        activateTab(container, index);
+      }
+    }
+  }
+});
+
+// Advanced Tabs Functionality
+// ============================
+
+/**
+ * Simple Liwa Tabs Functionality
+ * Handles initialization and interaction for simple Liwa tabs
+ */
+function initSimpleLiwaTabs() {
+  var tabContainers = document.querySelectorAll('.liwa-tabs');
+  tabContainers.forEach(function (container) {
+    initSimpleTabContainer(container);
+  });
+}
+
+// Function to initialize a single simple tab container
+function initSimpleTabContainer(container) {
+  if (!container || container.hasAttribute('data-tabs-initialized')) return;
+  var navItems = container.querySelectorAll('.liwa-tab-nav-item');
+  var contentItems = container.querySelectorAll('.liwa-tab-content-item');
+  if (navItems.length === 0 || contentItems.length === 0) return;
+
+  // Mark as initialized
+  container.setAttribute('data-tabs-initialized', 'true');
+
+  // Set up accessibility attributes
+  setupSimpleTabsAccessibility(container, navItems, contentItems);
+
+  // Add click event listeners
+  navItems.forEach(function (navItem, index) {
+    navItem.addEventListener('click', function (e) {
+      e.preventDefault();
+      activateSimpleTab(container, index, navItems, contentItems);
+    });
+
+    // Add keyboard navigation
+    navItem.addEventListener('keydown', function (e) {
+      handleSimpleTabKeydown(e, container, index, navItems, contentItems);
+    });
+  });
+
+  // Initialize with the first active tab or default to first tab
+  var activeIndex = 0;
+  navItems.forEach(function (item, index) {
+    if (item.classList.contains('active')) {
+      activeIndex = index;
+    }
+  });
+  activateSimpleTab(container, activeIndex, navItems, contentItems);
+
+  // Handle hash-based navigation
+  handleSimpleTabHashNavigation(container, navItems, contentItems);
+}
+
+// Set up accessibility attributes for simple tabs
+function setupSimpleTabsAccessibility(container, navItems, contentItems) {
+  var navContainer = container.querySelector('.liwa-tabs-nav');
+  if (navContainer) {
+    navContainer.setAttribute('role', 'tablist');
+  }
+  navItems.forEach(function (navItem, index) {
+    navItem.setAttribute('role', 'tab');
+    navItem.setAttribute('aria-controls', "liwa-tabpanel-".concat(index));
+    navItem.setAttribute('id', "liwa-tab-".concat(index));
+    navItem.setAttribute('tabindex', '-1');
+  });
+  contentItems.forEach(function (contentItem, index) {
+    contentItem.setAttribute('role', 'tabpanel');
+    contentItem.setAttribute('aria-labelledby', "liwa-tab-".concat(index));
+    contentItem.setAttribute('id', "liwa-tabpanel-".concat(index));
+    contentItem.setAttribute('tabindex', '0');
+  });
+}
+
+// Activate a specific simple tab
+function activateSimpleTab(container, index, navItems, contentItems) {
+  if (index < 0 || index >= navItems.length) return;
+
+  // Add loading state
+  container.classList.add('liwa-tabs-loading');
+
+  // Remove active classes from all items
+  navItems.forEach(function (item, i) {
+    item.classList.remove('active');
+    item.setAttribute('aria-selected', 'false');
+    item.setAttribute('tabindex', '-1');
+  });
+  contentItems.forEach(function (item) {
+    item.classList.remove('active');
+  });
+
+  // Add active class to selected items
+  navItems[index].classList.add('active');
+  navItems[index].setAttribute('aria-selected', 'true');
+  navItems[index].setAttribute('tabindex', '0');
+
+  // Use setTimeout to allow for smooth animation
+  setTimeout(function () {
+    contentItems[index].classList.add('active');
+    container.classList.remove('liwa-tabs-loading');
+
+    // Focus management for accessibility
+    if (document.activeElement === navItems[index]) {
+      contentItems[index].focus();
+    }
+
+    // Dispatch custom event
+    var event = new CustomEvent('liwaSimpleTabChanged', {
+      detail: {
+        container: container,
+        activeIndex: index,
+        activeNavItem: navItems[index],
+        activeContentItem: contentItems[index]
+      }
+    });
+    container.dispatchEvent(event);
+  }, 50);
+}
+
+// Handle keyboard navigation for simple tabs
+function handleSimpleTabKeydown(e, container, currentIndex, navItems, contentItems) {
+  var newIndex = currentIndex;
+  switch (e.key) {
+    case 'ArrowLeft':
+    case 'ArrowUp':
+      e.preventDefault();
+      newIndex = currentIndex > 0 ? currentIndex - 1 : navItems.length - 1;
+      break;
+    case 'ArrowRight':
+    case 'ArrowDown':
+      e.preventDefault();
+      newIndex = currentIndex < navItems.length - 1 ? currentIndex + 1 : 0;
+      break;
+    case 'Home':
+      e.preventDefault();
+      newIndex = 0;
+      break;
+    case 'End':
+      e.preventDefault();
+      newIndex = navItems.length - 1;
+      break;
+    case 'Enter':
+    case ' ':
+      e.preventDefault();
+      activateSimpleTab(container, currentIndex, navItems, contentItems);
+      return;
+    default:
+      return;
+  }
+  navItems[newIndex].focus();
+}
+
+// Handle hash-based navigation for simple tabs
+function handleSimpleTabHashNavigation(container, navItems, contentItems) {
+  var hash = window.location.hash;
+  if (hash) {
+    var targetPanel = container.querySelector(hash);
+    if (targetPanel && targetPanel.classList.contains('liwa-tab-content-item')) {
+      var index = Array.from(contentItems).indexOf(targetPanel);
+      if (index !== -1) {
+        activateSimpleTab(container, index, navItems, contentItems);
+      }
+    }
+  }
+}
+
+// Global function to programmatically activate a tab
+window.liwaActivateSimpleTab = function (containerId, tabIndex) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+  var navItems = container.querySelectorAll('.liwa-tab-nav-item');
+  var contentItems = container.querySelectorAll('.liwa-tab-content-item');
+  activateSimpleTab(container, tabIndex, navItems, contentItems);
+};
+
+// Handle responsive behavior
+function handleSimpleTabsResponsive() {
+  var tabContainers = document.querySelectorAll('.liwa-tabs');
+  tabContainers.forEach(function (container) {
+    var isSmallScreen = window.innerWidth <= 480;
+    if (isSmallScreen) {
+      container.classList.add('accordion-mobile');
+
+      // Add data-title attributes for accordion headers
+      var navItems = container.querySelectorAll('.liwa-tab-nav-item');
+      var contentItems = container.querySelectorAll('.liwa-tab-content-item');
+      contentItems.forEach(function (item, index) {
+        var title = navItems[index] ? navItems[index].textContent.trim() : "Tab ".concat(index + 1);
+        item.setAttribute('data-title', title);
+      });
+    } else {
+      container.classList.remove('accordion-mobile');
+    }
+  });
+}
+
+// Add resize listener for responsive behavior
+window.addEventListener('resize', handleSimpleTabsResponsive);
+
+// Initialize responsive behavior on load
+document.addEventListener('DOMContentLoaded', handleSimpleTabsResponsive);
+var LiwaAdvancedTabs = /*#__PURE__*/function () {
+  function LiwaAdvancedTabs(container) {
+    _classCallCheck(this, LiwaAdvancedTabs);
+    this.container = container;
+    this.tabLinks = container.querySelectorAll('.liwa-tab-item a');
+    this.tabContents = container.querySelectorAll('.liwa-tab-content');
+    this.autoRotate = container.dataset.autoRotate === 'Enable';
+    this.interval = parseInt(container.dataset.interval) || 5000;
+    this.activeIndex = parseInt(container.dataset.activeIndex) - 1 || 0;
+    this.animation = container.dataset.animation || 'Slide';
+    this.responsiveType = container.dataset.responsiveType || 'Tabs';
+    this.responsiveWidth = parseInt(container.dataset.responsiveWidth) || 768;
+    this.smoothScroll = container.dataset.smoothScroll === 'on';
+    this.autoRotateTimer = null;
+    this.init();
+  }
+  return _createClass(LiwaAdvancedTabs, [{
+    key: "init",
+    value: function init() {
+      this.setupInitialState();
+      this.bindEvents();
+      this.setupResponsive();
+      if (this.autoRotate) {
+        this.startAutoRotate();
+      }
+    }
+  }, {
+    key: "setupInitialState",
+    value: function setupInitialState() {
+      // Set initial active tab
+      this.setActiveTab(this.activeIndex);
+
+      // Setup hover effects for icons
+      this.tabLinks.forEach(function (link) {
+        var icon = link.querySelector('.liwa-tab-icon');
+        if (icon) {
+          var normalColor = icon.dataset.normalColor;
+          var hoverColor = icon.dataset.hoverColor;
+          link.addEventListener('mouseenter', function () {
+            if (hoverColor) icon.style.color = hoverColor;
+          });
+          link.addEventListener('mouseleave', function () {
+            if (!link.closest('.liwa-tab-item').classList.contains('active')) {
+              if (normalColor) icon.style.color = normalColor;
+            }
+          });
+        }
+      });
+    }
+  }, {
+    key: "bindEvents",
+    value: function bindEvents() {
+      var _this = this;
+      this.tabLinks.forEach(function (link, index) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          _this.setActiveTab(index);
+          if (_this.autoRotate) {
+            _this.restartAutoRotate();
+          }
+          if (_this.smoothScroll) {
+            _this.scrollToContent();
+          }
+        });
+      });
+
+      // Keyboard navigation
+      this.container.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          var direction = e.key === 'ArrowLeft' ? -1 : 1;
+          var newIndex = (_this.activeIndex + direction + _this.tabLinks.length) % _this.tabLinks.length;
+          _this.setActiveTab(newIndex);
+        }
+      });
+    }
+  }, {
+    key: "setActiveTab",
+    value: function setActiveTab(index) {
+      if (index < 0 || index >= this.tabLinks.length) return;
+
+      // Remove active class from all tabs and contents
+      this.tabLinks.forEach(function (link) {
+        link.closest('.liwa-tab-item').classList.remove('active');
+        link.classList.remove('active');
+      });
+      this.tabContents.forEach(function (content) {
+        content.classList.remove('active');
+      });
+
+      // Add active class to selected tab and content
+      var activeTabItem = this.tabLinks[index].closest('.liwa-tab-item');
+      var activeLink = this.tabLinks[index];
+      var activeContent = this.tabContents[index];
+      if (activeTabItem) activeTabItem.classList.add('active');
+      if (activeLink) activeLink.classList.add('active');
+      if (activeContent) {
+        activeContent.classList.add('active');
+
+        // Apply animation
+        this.applyAnimation(activeContent);
+      }
+
+      // Update hover states
+      this.updateHoverStates(activeLink);
+      this.activeIndex = index;
+
+      // Dispatch custom event
+      var event = new CustomEvent('liwa-tab-changed', {
+        detail: {
+          activeIndex: index,
+          activeContent: activeContent,
+          activeLink: activeLink
+        }
+      });
+      this.container.dispatchEvent(event);
+    }
+  }, {
+    key: "applyAnimation",
+    value: function applyAnimation(content) {
+      content.style.opacity = '0';
+      content.style.transform = this.getAnimationTransform();
+      requestAnimationFrame(function () {
+        content.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        content.style.opacity = '1';
+        content.style.transform = 'translateX(0) translateY(0)';
+      });
+    }
+  }, {
+    key: "getAnimationTransform",
+    value: function getAnimationTransform() {
+      switch (this.animation) {
+        case 'Fade':
+          return 'translateX(0) translateY(0)';
+        case 'Slide-Zoom':
+          return 'translateX(20px) translateY(10px) scale(0.95)';
+        default:
+          // Slide
+          return 'translateX(20px) translateY(0)';
+      }
+    }
+  }, {
+    key: "updateHoverStates",
+    value: function updateHoverStates(activeLink) {
+      var icon = activeLink.querySelector('.liwa-tab-icon');
+      if (icon) {
+        var hoverColor = icon.dataset.hoverColor;
+        if (hoverColor) icon.style.color = hoverColor;
+      }
+    }
+  }, {
+    key: "startAutoRotate",
+    value: function startAutoRotate() {
+      var _this2 = this;
+      this.autoRotateTimer = setInterval(function () {
+        var nextIndex = (_this2.activeIndex + 1) % _this2.tabLinks.length;
+        _this2.setActiveTab(nextIndex);
+      }, this.interval);
+    }
+  }, {
+    key: "stopAutoRotate",
+    value: function stopAutoRotate() {
+      if (this.autoRotateTimer) {
+        clearInterval(this.autoRotateTimer);
+        this.autoRotateTimer = null;
+      }
+    }
+  }, {
+    key: "restartAutoRotate",
+    value: function restartAutoRotate() {
+      this.stopAutoRotate();
+      this.startAutoRotate();
+    }
+  }, {
+    key: "scrollToContent",
+    value: function scrollToContent() {
+      var contentContainer = this.container.querySelector('.liwa-tabs-content');
+      if (contentContainer) {
+        contentContainer.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      }
+    }
+  }, {
+    key: "setupResponsive",
+    value: function setupResponsive() {
+      var _this3 = this;
+      var checkResponsive = function checkResponsive() {
+        var isResponsive = window.innerWidth <= _this3.responsiveWidth;
+        if (isResponsive && _this3.responsiveType === 'Accordion') {
+          _this3.convertToAccordion();
+        } else {
+          _this3.convertToTabs();
+        }
+      };
+      checkResponsive();
+      window.addEventListener('resize', checkResponsive);
+    }
+  }, {
+    key: "convertToAccordion",
+    value: function convertToAccordion() {
+      var _this4 = this;
+      // Add accordion behavior
+      this.tabContents.forEach(function (content, index) {
+        var title = _this4.tabLinks[index].textContent;
+        content.setAttribute('data-title', title);
+      });
+    }
+  }, {
+    key: "convertToTabs",
+    value: function convertToTabs() {
+      // Remove accordion attributes
+      this.tabContents.forEach(function (content) {
+        content.removeAttribute('data-title');
+      });
+    }
+  }, {
+    key: "destroy",
+    value: function destroy() {
+      this.stopAutoRotate();
+      // Remove event listeners and cleanup
+    }
+  }]);
+}(); // Initialize Advanced Tabs
+document.addEventListener('DOMContentLoaded', function () {
+  var advancedTabsContainers = document.querySelectorAll('.liwa-advanced-tabs');
+  advancedTabsContainers.forEach(function (container) {
+    new LiwaAdvancedTabs(container);
+  });
 });
 })();
 

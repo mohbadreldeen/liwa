@@ -12,77 +12,51 @@ $loop = !empty($atts['loop']);
 $speed = !empty($atts['speed']) ? intval($atts['speed']) : 300;
 $theme = !empty($atts['theme']) ? $atts['theme'] : 'light';
 
-// Add theme class to CSS classes
-$css_classes[] = 'liwa-slider-theme-' . $theme;
-
-// Create data attributes for Swiper configuration
-$swiper_config = [
+// Build Swiper configuration
+$swiper_config = array(
     'slidesPerView' => $items_per_slide_mobile,
     'spaceBetween' => $space_between,
     'speed' => $speed,
-    'breakpoints' => [
-        '768' => [
+    'breakpoints' => array(
+        768 => array(
             'slidesPerView' => $items_per_slide_tablet,
-            'spaceBetween' => $space_between
-        ],
-        '1024' => [
+        ),
+        1024 => array(
             'slidesPerView' => $items_per_slide_desktop,
-            'spaceBetween' => $space_between
-        ]
-    ]
-];
+        ),
+    ),
+);
+
+if ($show_navigation) {
+    $swiper_config['navigation'] = array(
+        'nextEl' => '#' . $unique_id . ' .swiper-button-next',
+        'prevEl' => '#' . $unique_id . ' .swiper-button-prev',
+    );
+}
+
+if ($show_pagination) {
+    $swiper_config['pagination'] = array(
+        'el' => '#' . $unique_id . ' .swiper-pagination',
+        'clickable' => true,
+    );
+}
 
 if ($autoplay) {
-    $swiper_config['autoplay'] = [
+    $swiper_config['autoplay'] = array(
         'delay' => $autoplay_delay,
-        'disableOnInteraction' => false
-    ];
+        'disableOnInteraction' => false,
+    );
 }
 
 if ($loop) {
     $swiper_config['loop'] = true;
 }
 
-if ($show_navigation) {
-    $swiper_config['navigation'] = [
-        'nextEl' => '.swiper-button-next',
-        'prevEl' => '.swiper-button-prev'
-    ];
-}
+// Use child content as slider content (this comes from the container)
+$slider_content = $child_content;
 
-if ($show_pagination) {
-    $swiper_config['pagination'] = [
-        'el' => '.swiper-pagination',
-        'clickable' => true
-    ];
-}
-?>
+// Set up variables for the common swiper view
+$no_content_message = __('No content found. Please add content to the slider.', 'liwadates');
 
-<div 
-  class="swiper <?php echo esc_attr(implode(' ', $css_classes)); ?>" 
-  id="<?php echo esc_attr($unique_id); ?>"
-  data-swiper-config="<?php echo esc_attr(json_encode($swiper_config)); ?>"<?php echo $style_attr; ?>
->
-  <div class="swiper-wrapper">
-  
-    <?php echo $child_content; ?>
-  </div>
-  
-  <?php if ($show_navigation || $show_pagination): ?>
-  <center>
-    <div class="swiper-navigation-box">
-      <?php if ($show_navigation): ?>
-      <div class="swiper-button-prev"></div>
-      <?php endif; ?>
-      
-      <?php if ($show_pagination): ?>
-      <div class="swiper-pagination"></div>
-      <?php endif; ?>
-      
-      <?php if ($show_navigation): ?>
-      <div class="swiper-button-next"></div>
-      <?php endif; ?>
-    </div>
-  </center>
-  <?php endif; ?>
-</div>
+// Include the common swiper view
+include LIWA_THEME_PATH . 'wpbackery-addons/views/liwa-swiper.php';

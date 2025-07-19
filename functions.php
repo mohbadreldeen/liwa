@@ -294,6 +294,20 @@ function liwa_scripts() {
 add_action( 'wp_enqueue_scripts', 'liwa_scripts' );
 
 /**
+ * Enqueue admin scripts and styles.
+ */
+function liwa_admin_scripts() {
+    // Enqueue admin CSS for WPBakery backend
+    wp_enqueue_style(
+        'liwa-admin-css',
+        LIWA_THEME_URL . '/dist/css/admin.css',
+        array(),
+        LIWA_VERSION
+    );
+}
+add_action( 'admin_enqueue_scripts', 'liwa_admin_scripts' );
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';

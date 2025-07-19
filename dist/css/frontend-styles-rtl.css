@@ -830,8 +830,35 @@ body, button, input, select, textarea {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Almarai", sans-serif;
-  font-weight: 700;
+  font-weight: 700 !important;
   font-style: normal;
+}
+
+h1 {
+  font-size: 60px;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 45px;
+  line-height: 1.2;
+}
+
+p {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.text-lg p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.8em;
+}
+
+.border-heading {
+  border-right: 5px solid #95684B;
+  padding-right: 15px;
 }
 
 /* Layout */
@@ -1201,6 +1228,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid #646464;
   border-radius: 90px;
   padding: 0 20px;
+  margin: 30px 0;
 }
 
 .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
