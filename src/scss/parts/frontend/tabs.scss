@@ -1,0 +1,290 @@
+/* Liwa Tabs - Enhanced Version SCSS */
+.liwa-tabs {
+    margin-bottom: 20px;
+    
+    &-nav {
+        display: flex;
+     
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+        margin-left: 0;
+        
+        
+       
+    }
+
+    &-content {
+        position: relative;
+        min-height: 100px;
+    }
+}
+
+.liwa-tab {
+    &-nav-item {
+        padding: 12px 20px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-bottom: none;
+        background: #f8f9fa;
+        margin-right: 2px;
+        transition: all 0.3s ease;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: inherit;
+        font-size: 14px;
+        line-height: 1.4;
+
+        &:hover {
+            background: #e9ecef;
+            color: inherit;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        &.active {
+            background: #fff;
+            border-color: #ddd;
+            border-bottom-color: #fff;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 2;
+            color: inherit;
+            
+        }
+
+     
+
+        i {
+            margin-right: 0;
+            font-size: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .liwa-tab-image {
+            border-radius: 4px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        span {
+            white-space: nowrap;
+        }
+
+        // Vertical layout for image/icon + text
+        &.has-image,
+        &.has-icon {
+            flex-direction: column;
+            text-align: center;
+            
+            i,
+            .liwa-tab-image {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    &-content-item {
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+
+        &.active {
+            display: block;
+        }
+    }
+}
+
+ 
+  
+ 
+
+ 
+
+.liwa-tab-nav-item {
+    border: none;
+    background: transparent;
+    padding: 8px 16px;
+    margin-right: 20px;
+    margin-bottom: 0;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+        color: #007cba;
+        background: transparent;
+        transform: translateY(-1px);
+    }
+
+    &.active {
+        background: transparent;
+        border-bottom-color: #007cba;
+        color: #007cba;
+        transform: none;
+    }
+}
+.liwa-tabs-style-1{
+    gap: 30px !important;
+    .liwa-tab-nav-item {
+        flex:1;
+        border-radius: 28px;
+        box-shadow: 0 20px 26px rgba(0, 0, 0, 0.05);
+        border:0;
+
+        &:hover {
+            background: rgba(#95684B, 0.14);
+        }
+        &.active {
+            background: rgba(#95684B, 0.14);
+            border: 1px solid #95684B;
+        }
+    }
+}
+ 
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .liwa-tabs {
+        &-nav {
+            flex-direction: column;
+            border-bottom: none;
+          
+        }
+    }
+    
+    .liwa-tab-nav-item {
+        margin-right: 0;
+        margin-bottom: 2px;
+        border-bottom: 1px solid transparent;
+        border-right: none;
+
+   
+    }
+    
+    
+    .liwa-tabs-nav {
+        flex-direction: column;
+        border-bottom: none;
+        
+    }
+
+    .liwa-tab-nav-item {
+        margin-right: 0;
+        margin-bottom: 5px;
+        border-bottom: none;
+        border-right: 2px solid transparent;
+
+    }
+  
+}
+
+/* Mobile Accordion Style (Optional) */
+@media (max-width: 480px) {
+    .liwa-tabs {
+        &.accordion-mobile {
+            .liwa-tabs-nav {
+                display: none;
+            }
+
+            .liwa-tab-content-item {
+           
+                margin-bottom: 10px;
+                border-radius: 4px;
+                overflow: hidden;
+
+                &::before {
+                    content: attr(data-title);
+                    display: block;
+                    padding: 12px 20px;
+                    background: #f8f9fa;
+                  cursor: pointer;
+                    
+                }
+
+                &:not(.active) {
+                    .liwa-tab-content {
+                        display: none;
+                    }
+                }
+
+                .liwa-tab-content {
+                    padding: 20px;
+                }
+            }
+        }
+    }
+}
+
+/* Loading State */
+.liwa-tabs-loading {
+    .liwa-tab-content-item {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #007cba;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Print Styles */
+@media print {
+    .liwa-tabs {
+        .liwa-tabs-nav {
+            display: none;
+        }
+
+        .liwa-tab-content-item {
+            display: block !important;
+            page-break-inside: avoid;
+            margin-bottom: 20px;
+
+            &::before {
+                content: attr(data-title);
+                display: block;
+                margin-bottom: 10px;
+                padding-bottom: 5px;
+                border-bottom: 1px solid #000;
+            }
+        }
+    }
+}

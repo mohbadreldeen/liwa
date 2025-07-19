@@ -1579,7 +1579,6 @@ p {
   position: relative;
   z-index: 2;
   color: inherit;
-  font-weight: 600;
 }
 .liwa-tab-nav-item i {
   margin-right: 0;
@@ -1708,7 +1707,6 @@ p {
     padding: 12px 20px;
     background: #f8f9fa;
     cursor: pointer;
-    font-weight: 500;
   }
   .liwa-tabs.accordion-mobile .liwa-tab-content-item:not(.active) .liwa-tab-content {
     display: none;
@@ -1757,7 +1755,6 @@ p {
   .liwa-tabs .liwa-tab-content-item::before {
     content: attr(data-title);
     display: block;
-    font-weight: bold;
     margin-bottom: 10px;
     padding-bottom: 5px;
     border-bottom: 1px solid #000;

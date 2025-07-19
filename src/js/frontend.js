@@ -19,129 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const swiperElements = document.querySelectorAll('.swiper');
   
   swiperElements.forEach((swiperElement) => {
-
-    // Get configuration from data attribute
-    let config = {
-      // Default configuration
-      loop: true,
-      modules: [Navigation, Pagination, Scrollbar],
-      slidesPerView: 1,
-      spaceBetween: 20,
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 20
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 30
-        }
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: false,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    };
-
-    // Override with custom configuration if provided
-    const customConfig = swiperElement.getAttribute('data-swiper-config');
-    if (customConfig) {
-      try {
-        const parsedConfig = JSON.parse(customConfig);
-        config = { ...config, ...parsedConfig };
-        
-        // Merge breakpoints properly
-        if (parsedConfig.breakpoints) {
-          config.breakpoints = { ...config.breakpoints, ...parsedConfig.breakpoints };
-        }
-        
-        console.log("Using custom Swiper config:", config);
-      } catch (e) {
-        console.error("Error parsing Swiper config:", e);
-      }
-    }
-
-    // Always scope navigation and pagination to this specific slider
-    const nextButton = swiperElement.querySelector('.swiper-button-next');
-    const prevButton = swiperElement.querySelector('.swiper-button-prev');
-    const pagination = swiperElement.querySelector('.swiper-pagination');
-    
-    // Only add navigation if elements exist
-    if (nextButton && prevButton) {
-      config.navigation = {
-        nextEl: nextButton,
-        prevEl: prevButton,
-      };
-    } else {
-      // Remove navigation if elements don't exist
-      delete config.navigation;
-    }
-    
-    // Only add pagination if element exists
-    if (pagination) {
-      config.pagination = {
-        el: pagination,
-        clickable: true,
-        dynamicBullets: false
-        
-      };
-    } else {
-      // Remove pagination if element doesn't exist
-      delete config.pagination;
-    }
-    
-    config.on ={
-       init: function () {
-       
-       swiperElement.querySelectorAll(':scope > .swiper-wrapper > div').forEach(child => {
-          if (!child.classList.contains('swiper-slide')) {
-            console.log(child)
-            child.classList.add('swiper-slide');
-          }
-        });
-    },
-    }
-
-    // Initialize Swiper with the configuration
-    const swiper = new Swiper(swiperElement, config);
-    
-    // Force show navigation arrows if they exist and ensure they stay visible
-    if (nextButton && prevButton) {
-      // Make sure navigation is visible immediately
-      nextButton.style.display = 'flex';
-      prevButton.style.display = 'flex';
-      
-      // Add custom event listeners to ensure navigation stays visible
-      swiper.on('init', function() {
-        console.log("Swiper initialized with custom navigation for:", swiperElement.id);
-       
-        
-        if (nextButton) nextButton.style.display = 'flex';
-        if (prevButton) prevButton.style.display = 'flex';
-      });
-      
-      swiper.on('slideChange', function() {
-        if (nextButton) nextButton.style.display = 'flex';
-        if (prevButton) prevButton.style.display = 'flex';
-      });
-      
-      swiper.on('reachEnd', function() {
-        if (nextButton) nextButton.style.display = 'flex';
-        if (prevButton) prevButton.style.display = 'flex';
-      });
-      
-      swiper.on('reachBeginning', function() {
-        if (nextButton) nextButton.style.display = 'flex';
-        if (prevButton) prevButton.style.display = 'flex';
-      });
-    }
-    
-    
+    initializeSingleSwiper(swiperElement);
   });
 
   languageSwitcher();
@@ -441,6 +319,9 @@ function activateSimpleTab(container, index, navItems, contentItems) {
   setTimeout(() => {
     contentItems[index].classList.add('active');
     container.classList.remove('liwa-tabs-loading');
+    
+    // Reinitialize Swiper sliders in the newly active tab
+    reinitializeSwiperInTab(contentItems[index]);
     
     // Focus management for accessibility
     if (document.activeElement === navItems[index]) {
@@ -759,6 +640,167 @@ class LiwaAdvancedTabs {
     this.stopAutoRotate();
     // Remove event listeners and cleanup
   }
+}
+
+/**
+ * Reinitialize Swiper sliders in a newly active tab
+ * This fixes the issue where Swiper can't calculate proper dimensions when initially hidden
+ */
+function reinitializeSwiperInTab(tabContent) {
+  if (!tabContent) return;
+  
+  // Find all Swiper instances in this tab content
+  const swiperElements = tabContent.querySelectorAll('.swiper');
+  
+  swiperElements.forEach((swiperElement) => {
+    // Check if this Swiper already has an instance
+    if (swiperElement.swiper) {
+      // Update the Swiper to recalculate dimensions
+      swiperElement.swiper.update();
+      swiperElement.swiper.updateSize();
+      swiperElement.swiper.updateSlides();
+      swiperElement.swiper.updateProgress();
+      swiperElement.swiper.updateSlidesClasses();
+      
+      // Force a resize event to make sure everything is properly sized
+      setTimeout(() => {
+        if (swiperElement.swiper) {
+          swiperElement.swiper.update();
+        }
+      }, 100);
+      
+      console.log('Swiper updated for newly active tab:', swiperElement.id);
+    } else {
+      // If no Swiper instance exists, create one
+      initializeSingleSwiper(swiperElement);
+    }
+  });
+}
+
+/**
+ * Initialize a single Swiper instance
+ * Extracted from the main initialization logic for reuse
+ */
+function initializeSingleSwiper(swiperElement) {
+  // Get configuration from data attribute
+  let config = {
+    // Default configuration
+    loop: true,
+    modules: [Navigation, Pagination, Scrollbar],
+    slidesPerView: 1,
+    spaceBetween: 20,
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30
+      }
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      dynamicBullets: false,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  };
+
+  // Override with custom configuration if provided
+  const customConfig = swiperElement.getAttribute('data-swiper-config');
+  if (customConfig) {
+    try {
+      const parsedConfig = JSON.parse(customConfig);
+      config = { ...config, ...parsedConfig };
+      
+      // Merge breakpoints properly
+      if (parsedConfig.breakpoints) {
+        config.breakpoints = { ...config.breakpoints, ...parsedConfig.breakpoints };
+      }
+      
+      console.log("Using custom Swiper config:", config);
+    } catch (e) {
+      console.error("Error parsing Swiper config:", e);
+    }
+  }
+
+  // Always scope navigation and pagination to this specific slider
+  const nextButton = swiperElement.querySelector('.swiper-button-next');
+  const prevButton = swiperElement.querySelector('.swiper-button-prev');
+  const pagination = swiperElement.querySelector('.swiper-pagination');
+  
+  // Only add navigation if elements exist
+  if (nextButton && prevButton) {
+    config.navigation = {
+      nextEl: nextButton,
+      prevEl: prevButton,
+    };
+  } else {
+    // Remove navigation if elements don't exist
+    delete config.navigation;
+  }
+  
+  // Only add pagination if element exists
+  if (pagination) {
+    config.pagination = {
+      el: pagination,
+      clickable: true,
+      dynamicBullets: false
+    };
+  } else {
+    // Remove pagination if element doesn't exist
+    delete config.pagination;
+  }
+  
+  config.on = {
+    init: function () {
+      swiperElement.querySelectorAll(':scope > .swiper-wrapper > div').forEach(child => {
+        if (!child.classList.contains('swiper-slide')) {
+          console.log(child)
+          child.classList.add('swiper-slide');
+        }
+      });
+    },
+  }
+
+  // Initialize Swiper with the configuration
+  const swiper = new Swiper(swiperElement, config);
+  
+  // Force show navigation arrows if they exist and ensure they stay visible
+  if (nextButton && prevButton) {
+    // Make sure navigation is visible immediately
+    nextButton.style.display = 'flex';
+    prevButton.style.display = 'flex';
+    
+    // Add custom event listeners to ensure navigation stays visible
+    swiper.on('init', function() {
+      console.log("Swiper initialized with custom navigation for:", swiperElement.id);
+      
+      if (nextButton) nextButton.style.display = 'flex';
+      if (prevButton) prevButton.style.display = 'flex';
+    });
+    
+    swiper.on('slideChange', function() {
+      if (nextButton) nextButton.style.display = 'flex';
+      if (prevButton) prevButton.style.display = 'flex';
+    });
+    
+    swiper.on('reachEnd', function() {
+      if (nextButton) nextButton.style.display = 'flex';
+      if (prevButton) prevButton.style.display = 'flex';
+    });
+    
+    swiper.on('reachBeginning', function() {
+      if (nextButton) nextButton.style.display = 'flex';
+      if (prevButton) prevButton.style.display = 'flex';
+    });
+  }
+  
+  return swiper;
 }
 
 // Initialize Advanced Tabs

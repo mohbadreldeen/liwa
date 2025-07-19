@@ -28,7 +28,7 @@ function custom_wpbakery_addon_integration() {
     add_shortcode('liwa_woo_slider', 'liwa_woo_slider_shortcode');
     add_shortcode('liwa_tilt_image', 'liwa_tilt_image_shortcode');
     add_shortcode('liwa_tabs', 'liwa_tabs_shortcode');
-    add_shortcode('liwa_tab', 'liwa_tab_shortcode');
+    // add_shortcode('liwa_tab', 'liwa_tab_shortcode');
     add_shortcode('liwa_advanced_tabs', 'liwa_advanced_tabs_shortcode');
 }
 

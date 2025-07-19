@@ -10792,13 +10792,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper_css_pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! swiper/css/pagination */ "./node_modules/swiper/modules/pagination.css");
 /* harmony import */ var swiper_css_scrollbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! swiper/css/scrollbar */ "./node_modules/swiper/modules/scrollbar.css");
 /* harmony import */ var _componetns_language_switcher__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./componetns/language-switcher */ "./src/js/componetns/language-switcher.js");
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 // core version + navigation, pagination modules:
@@ -10819,117 +10819,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initialize all swiper elements
   var swiperElements = document.querySelectorAll('.swiper');
   swiperElements.forEach(function (swiperElement) {
-    // Get configuration from data attribute
-    var config = {
-      // Default configuration
-      loop: true,
-      modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Scrollbar],
-      slidesPerView: 1,
-      spaceBetween: 20,
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 20
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 30
-        }
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: false
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      }
-    };
-
-    // Override with custom configuration if provided
-    var customConfig = swiperElement.getAttribute('data-swiper-config');
-    if (customConfig) {
-      try {
-        var parsedConfig = JSON.parse(customConfig);
-        config = _objectSpread(_objectSpread({}, config), parsedConfig);
-
-        // Merge breakpoints properly
-        if (parsedConfig.breakpoints) {
-          config.breakpoints = _objectSpread(_objectSpread({}, config.breakpoints), parsedConfig.breakpoints);
-        }
-        console.log("Using custom Swiper config:", config);
-      } catch (e) {
-        console.error("Error parsing Swiper config:", e);
-      }
-    }
-
-    // Always scope navigation and pagination to this specific slider
-    var nextButton = swiperElement.querySelector('.swiper-button-next');
-    var prevButton = swiperElement.querySelector('.swiper-button-prev');
-    var pagination = swiperElement.querySelector('.swiper-pagination');
-
-    // Only add navigation if elements exist
-    if (nextButton && prevButton) {
-      config.navigation = {
-        nextEl: nextButton,
-        prevEl: prevButton
-      };
-    } else {
-      // Remove navigation if elements don't exist
-      delete config.navigation;
-    }
-
-    // Only add pagination if element exists
-    if (pagination) {
-      config.pagination = {
-        el: pagination,
-        clickable: true,
-        dynamicBullets: false
-      };
-    } else {
-      // Remove pagination if element doesn't exist
-      delete config.pagination;
-    }
-    config.on = {
-      init: function init() {
-        swiperElement.querySelectorAll(':scope > .swiper-wrapper > div').forEach(function (child) {
-          if (!child.classList.contains('swiper-slide')) {
-            console.log(child);
-            child.classList.add('swiper-slide');
-          }
-        });
-      }
-    };
-
-    // Initialize Swiper with the configuration
-    var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](swiperElement, config);
-
-    // Force show navigation arrows if they exist and ensure they stay visible
-    if (nextButton && prevButton) {
-      // Make sure navigation is visible immediately
-      nextButton.style.display = 'flex';
-      prevButton.style.display = 'flex';
-
-      // Add custom event listeners to ensure navigation stays visible
-      swiper.on('init', function () {
-        console.log("Swiper initialized with custom navigation for:", swiperElement.id);
-        if (nextButton) nextButton.style.display = 'flex';
-        if (prevButton) prevButton.style.display = 'flex';
-      });
-      swiper.on('slideChange', function () {
-        if (nextButton) nextButton.style.display = 'flex';
-        if (prevButton) prevButton.style.display = 'flex';
-      });
-      swiper.on('reachEnd', function () {
-        if (nextButton) nextButton.style.display = 'flex';
-        if (prevButton) prevButton.style.display = 'flex';
-      });
-      swiper.on('reachBeginning', function () {
-        if (nextButton) nextButton.style.display = 'flex';
-        if (prevButton) prevButton.style.display = 'flex';
-      });
-    }
+    initializeSingleSwiper(swiperElement);
   });
   (0,_componetns_language_switcher__WEBPACK_IMPORTED_MODULE_6__["default"])();
 
@@ -11209,6 +11099,9 @@ function activateSimpleTab(container, index, navItems, contentItems) {
   setTimeout(function () {
     contentItems[index].classList.add('active');
     container.classList.remove('liwa-tabs-loading');
+
+    // Reinitialize Swiper sliders in the newly active tab
+    reinitializeSwiperInTab(contentItems[index]);
 
     // Focus management for accessibility
     if (document.activeElement === navItems[index]) {
@@ -11534,7 +11427,160 @@ var LiwaAdvancedTabs = /*#__PURE__*/function () {
       // Remove event listeners and cleanup
     }
   }]);
-}(); // Initialize Advanced Tabs
+}();
+/**
+ * Reinitialize Swiper sliders in a newly active tab
+ * This fixes the issue where Swiper can't calculate proper dimensions when initially hidden
+ */
+function reinitializeSwiperInTab(tabContent) {
+  if (!tabContent) return;
+
+  // Find all Swiper instances in this tab content
+  var swiperElements = tabContent.querySelectorAll('.swiper');
+  swiperElements.forEach(function (swiperElement) {
+    // Check if this Swiper already has an instance
+    if (swiperElement.swiper) {
+      // Update the Swiper to recalculate dimensions
+      swiperElement.swiper.update();
+      swiperElement.swiper.updateSize();
+      swiperElement.swiper.updateSlides();
+      swiperElement.swiper.updateProgress();
+      swiperElement.swiper.updateSlidesClasses();
+
+      // Force a resize event to make sure everything is properly sized
+      setTimeout(function () {
+        if (swiperElement.swiper) {
+          swiperElement.swiper.update();
+        }
+      }, 100);
+      console.log('Swiper updated for newly active tab:', swiperElement.id);
+    } else {
+      // If no Swiper instance exists, create one
+      initializeSingleSwiper(swiperElement);
+    }
+  });
+}
+
+/**
+ * Initialize a single Swiper instance
+ * Extracted from the main initialization logic for reuse
+ */
+function initializeSingleSwiper(swiperElement) {
+  // Get configuration from data attribute
+  var config = {
+    // Default configuration
+    loop: true,
+    modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Scrollbar],
+    slidesPerView: 1,
+    spaceBetween: 20,
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30
+      }
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      dynamicBullets: false
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
+  };
+
+  // Override with custom configuration if provided
+  var customConfig = swiperElement.getAttribute('data-swiper-config');
+  if (customConfig) {
+    try {
+      var parsedConfig = JSON.parse(customConfig);
+      config = _objectSpread(_objectSpread({}, config), parsedConfig);
+
+      // Merge breakpoints properly
+      if (parsedConfig.breakpoints) {
+        config.breakpoints = _objectSpread(_objectSpread({}, config.breakpoints), parsedConfig.breakpoints);
+      }
+      console.log("Using custom Swiper config:", config);
+    } catch (e) {
+      console.error("Error parsing Swiper config:", e);
+    }
+  }
+
+  // Always scope navigation and pagination to this specific slider
+  var nextButton = swiperElement.querySelector('.swiper-button-next');
+  var prevButton = swiperElement.querySelector('.swiper-button-prev');
+  var pagination = swiperElement.querySelector('.swiper-pagination');
+
+  // Only add navigation if elements exist
+  if (nextButton && prevButton) {
+    config.navigation = {
+      nextEl: nextButton,
+      prevEl: prevButton
+    };
+  } else {
+    // Remove navigation if elements don't exist
+    delete config.navigation;
+  }
+
+  // Only add pagination if element exists
+  if (pagination) {
+    config.pagination = {
+      el: pagination,
+      clickable: true,
+      dynamicBullets: false
+    };
+  } else {
+    // Remove pagination if element doesn't exist
+    delete config.pagination;
+  }
+  config.on = {
+    init: function init() {
+      swiperElement.querySelectorAll(':scope > .swiper-wrapper > div').forEach(function (child) {
+        if (!child.classList.contains('swiper-slide')) {
+          console.log(child);
+          child.classList.add('swiper-slide');
+        }
+      });
+    }
+  };
+
+  // Initialize Swiper with the configuration
+  var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](swiperElement, config);
+
+  // Force show navigation arrows if they exist and ensure they stay visible
+  if (nextButton && prevButton) {
+    // Make sure navigation is visible immediately
+    nextButton.style.display = 'flex';
+    prevButton.style.display = 'flex';
+
+    // Add custom event listeners to ensure navigation stays visible
+    swiper.on('init', function () {
+      console.log("Swiper initialized with custom navigation for:", swiperElement.id);
+      if (nextButton) nextButton.style.display = 'flex';
+      if (prevButton) prevButton.style.display = 'flex';
+    });
+    swiper.on('slideChange', function () {
+      if (nextButton) nextButton.style.display = 'flex';
+      if (prevButton) prevButton.style.display = 'flex';
+    });
+    swiper.on('reachEnd', function () {
+      if (nextButton) nextButton.style.display = 'flex';
+      if (prevButton) prevButton.style.display = 'flex';
+    });
+    swiper.on('reachBeginning', function () {
+      if (nextButton) nextButton.style.display = 'flex';
+      if (prevButton) prevButton.style.display = 'flex';
+    });
+  }
+  return swiper;
+}
+
+// Initialize Advanced Tabs
 document.addEventListener('DOMContentLoaded', function () {
   var advancedTabsContainers = document.querySelectorAll('.liwa-advanced-tabs');
   advancedTabsContainers.forEach(function (container) {

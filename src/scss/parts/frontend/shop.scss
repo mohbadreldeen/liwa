@@ -1,0 +1,33 @@
+.product-item{
+	background:#fff;
+	box-shadow: 0 20px 24px rgba(0, 0, 0, 0.04);
+	padding: 25px;
+
+	display: flex;
+	flex-direction: column;
+	border-radius: 28px;
+	.product-title a{
+		color: #000;
+		text-decoration: none;
+		font-size: 24px;
+		font-weight: 700;
+	}
+	.product-description{
+		font-size: 18px;
+		color: #727476;
+	 
+	}
+	.product-image img{
+		width: 100%;
+	}
+	bdi{
+		display: flex;
+		justify-content: space-between;
+		font-size: 24px;
+		color: #000;
+		font-weight: 700;
+		 .woocommerce-Price-currencySymbol{
+			color:#704E38;
+		 }
+	}
+}

@@ -1,0 +1,18 @@
+.hero-counters{
+	// background: rgba(255, 255, 255, 0.05);
+    border-radius: 999px;
+    border: 1px solid #7A695E;
+    // backdrop-filter: blur(3px);
+	padding:20px 60px;
+	margin: 100px 0 !important;
+	.stats-block {
+		margin-bottom:0 !important;
+	}
+	.counter_prefix{
+		
+		color: #95684B;
+	}
+	.stats-block .stats-text{
+		margin-top:10px;
+	}
+}

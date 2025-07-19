@@ -1,0 +1,114 @@
+/* Tilt Image Styles */
+.liwa-tilt-image {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+    
+    .tilt-image-wrapper {
+        position: relative;
+        display: block;
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        transform-style: preserve-3d;
+        transform-origin: center center;
+        will-change: transform;
+        
+        // When hovering, apply the transform
+        &.tilt-hovering {
+            transition: none; // Disable transition during mouse movement
+        }
+        
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: inherit;
+        }
+    }
+    
+    // Overlay effect
+    .tilt-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+        border-radius: inherit;
+    }
+    
+    &:hover .tilt-overlay,
+    .tilt-image-wrapper.tilt-hovering + .tilt-overlay {
+        opacity: 1;
+    }
+    
+    // Glow effect
+    &.tilt-glow {
+        .tilt-image-wrapper.tilt-hovering {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 0 30px rgba(255,255,255,0.1);
+        }
+    }
+    
+    // Shadow effect
+    &.tilt-shadow {
+        .tilt-image-wrapper.tilt-hovering {
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+    }
+    
+    // Different border radius options
+    &.tilt-rounded {
+        border-radius: 15px;
+    }
+    
+    &.tilt-circle {
+        border-radius: 50%;
+        
+        .tilt-image-wrapper img {
+            border-radius: 50%;
+        }
+    }
+    
+    // Different themes
+    &.tilt-theme-light {
+        .tilt-overlay {
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.1) 100%);
+        }
+    }
+    
+    &.tilt-theme-dark {
+        .tilt-overlay {
+            background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.2) 100%);
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .liwa-tilt-image {
+        // On mobile, disable tilt effects and just apply scale
+        .tilt-image-wrapper:hover,
+        .tilt-image-wrapper.tilt-hovering {
+            transform: perspective(1000px) scale(1.02) !important;
+        }
+    }
+}
+
+// Animation keyframes for entrance effects
+@keyframes tiltImageFadeIn {
+    from {
+        opacity: 0;
+        transform: perspective(1000px) rotateX(20deg) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: perspective(1000px) rotateX(0deg) translateY(0px);
+    }
+}
+
+.liwa-tilt-image.tilt-animate-in {
+    animation: tiltImageFadeIn 0.8s ease-out forwards;
+}
