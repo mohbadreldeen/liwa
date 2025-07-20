@@ -344,35 +344,32 @@ function activateSimpleTab(container, index, navItems, contentItems) {
 // Handle keyboard navigation for simple tabs
 function handleSimpleTabKeydown(e, container, currentIndex, navItems, contentItems) {
   let newIndex = currentIndex;
+  e.preventDefault();
+  e.stopPropagation();
   
   switch (e.key) {
     case 'ArrowLeft':
     case 'ArrowUp':
-      e.preventDefault();
+      
       newIndex = currentIndex > 0 ? currentIndex - 1 : navItems.length - 1;
       break;
     case 'ArrowRight':
     case 'ArrowDown':
-      e.preventDefault();
       newIndex = currentIndex < navItems.length - 1 ? currentIndex + 1 : 0;
       break;
     case 'Home':
-      e.preventDefault();
       newIndex = 0;
       break;
     case 'End':
-      e.preventDefault();
       newIndex = navItems.length - 1;
       break;
     case 'Enter':
     case ' ':
-      e.preventDefault();
       activateSimpleTab(container, currentIndex, navItems, contentItems);
       return;
     default:
-      return;
+      return false; // Ignore other keys
   }
-  
   navItems[newIndex].focus();
 }
 
