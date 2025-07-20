@@ -70,7 +70,6 @@ $theme = isset($theme) ? $theme : 'light';
 >
   <div class="swiper-wrapper">
     <?php 
-	wp_log($slider_content);
 	echo $slider_content; ?>
   </div>
 

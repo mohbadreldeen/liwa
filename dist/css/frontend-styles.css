@@ -419,6 +419,7 @@ big {
 --------------------------------------------- */
 body {
   background: #fff;
+  overflow-x: hidden;
 }
 
 hr {
@@ -1654,6 +1655,7 @@ p {
   margin-right: 20px;
   margin-bottom: 0;
   border-bottom: 2px solid transparent;
+  justify-content: center;
 }
 .liwa-tab-nav-item:hover {
   color: #007cba;
@@ -1911,39 +1913,6 @@ p {
   background-color: #95684B;
   border-color: #95684B;
   color: #fff;
-}
-.btn-primary button:hover {
-  background-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
-  border-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
-}
-.btn-primary button:focus {
-  box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
-}
-
-.btn-outline button {
-  background-color: transparent;
-  border-color: #95684B;
-  color: #95684B;
-}
-.btn-outline button:hover {
-  background-color: rgba(149, 104, 75, 0.1);
-  border-color: #95684B;
-  color: #95684B;
-}
-.btn-outline button:focus {
-  box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
-}
-.btn-outline button.inverse {
-  background-color: #fff;
-  border-color: #fff;
-  color: #fff;
-}
-.btn-outline button.inverse:hover {
-  background-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
-  border-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
-}
-.btn-outline button.inverse:focus {
-  box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
 }
 
 /*# sourceMappingURL=frontend-styles.css.map*/

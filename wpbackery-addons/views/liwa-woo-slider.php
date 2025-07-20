@@ -120,10 +120,6 @@ if ($orderby === 'popularity') {
 // Execute the query
 $products = new WP_Query($args);
 
-
-wp_log("products");
-wp_log('Number of products found: ' . $products->found_posts);
-
 // Build Swiper configuration
 $swiper_config = array(
     'slidesPerView' => $items_per_slide_mobile,
