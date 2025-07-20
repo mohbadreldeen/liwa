@@ -1421,51 +1421,52 @@ p {
   content: "\e912";
 }
 
-.btn-primary button, .btn-primary a {
+.btn-primary.ubtn-ctn-inline button, .btn-primary.ubtn-ctn-inline a {
   background-color: var(--color-primary);
   color: var(--color-text-inverse);
   border: none;
   padding: 15px 55px;
-  border-radius: 30px;
+  border-radius: 50px;
   cursor: pointer;
   font-size: 18px;
   font-family: var(--font-family);
   font-weight: 700;
   text-decoration: none;
 }
-.btn-primary button:hover, .btn-primary a:hover {
+.btn-primary.ubtn-ctn-inline button:hover, .btn-primary.ubtn-ctn-inline a:hover {
   background-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
   border-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
 }
-.btn-primary button:focus, .btn-primary a:focus {
+.btn-primary.ubtn-ctn-inline button:focus, .btn-primary.ubtn-ctn-inline a:focus {
   box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
 }
 
-.btn-outline button, .btn-outline a {
+.btn-outline.ubtn-ctn-inline button, .btn-outline.ubtn-ctn-inline a {
   background-color: transparent;
   border-color: #95684B;
   color: #95684B;
   border: 1px solid #F4F4F4;
 }
-.btn-outline button:hover, .btn-outline a:hover {
+.btn-outline.ubtn-ctn-inline button:hover, .btn-outline.ubtn-ctn-inline a:hover {
   background-color: rgba(149, 104, 75, 0.1);
   border-color: #95684B;
   color: #95684B;
 }
-.btn-outline button:focus, .btn-outline a:focus {
+.btn-outline.ubtn-ctn-inline button:focus, .btn-outline.ubtn-ctn-inline a:focus {
   box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
 }
-.btn-outline.inverse {
+.btn-outline.ubtn-ctn-inline.inverse {
   background-color: transparent;
   border: 1px solid #F4F4F4;
   border-color: #fff;
   color: #fff;
+  border-radius: 50px !important;
 }
-.btn-outline.inverse:hover {
+.btn-outline.ubtn-ctn-inline.inverse:hover {
   background-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
   border-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
 }
-.btn-outline.inverse:focus {
+.btn-outline.ubtn-ctn-inline.inverse:focus {
   box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
 }
 
