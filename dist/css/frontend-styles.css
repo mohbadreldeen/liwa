@@ -1433,7 +1433,7 @@ p {
   content: "\e912";
 }
 
-.btn-outline .btn-outline button, .btn-outline .btn-outline a {
+.btn-primary button, .btn-primary a {
   background-color: var(--color-primary);
   color: var(--color-text-inverse);
   border: none;
@@ -1445,37 +1445,37 @@ p {
   font-weight: 700;
   text-decoration: none;
 }
-.btn-outline .btn-outline button:hover, .btn-outline .btn-outline a:hover {
+.btn-primary button:hover, .btn-primary a:hover {
   background-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
   border-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
 }
-.btn-outline .btn-outline button:focus, .btn-outline .btn-outline a:focus {
+.btn-primary button:focus, .btn-primary a:focus {
   box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
 }
 
-.btn-outline .btn-outline button, .btn-outline .btn-outline a {
+.btn-outline button, .btn-outline a {
   background-color: transparent;
   border-color: #95684B;
   color: #95684B;
 }
-.btn-outline .btn-outline button:hover, .btn-outline .btn-outline a:hover {
+.btn-outline button:hover, .btn-outline a:hover {
   background-color: rgba(149, 104, 75, 0.1);
   border-color: #95684B;
   color: #95684B;
 }
-.btn-outline .btn-outline button:focus, .btn-outline .btn-outline a:focus {
+.btn-outline button:focus, .btn-outline a:focus {
   box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
 }
-.btn-outline .btn-outline.inverse {
+.btn-outline.inverse {
   background-color: #fff;
   border-color: #fff;
   color: #fff;
 }
-.btn-outline .btn-outline.inverse:hover {
+.btn-outline.inverse:hover {
   background-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
   border-color: rgb(115.0758928571, 80.3214285714, 57.9241071429);
 }
-.btn-outline .btn-outline.inverse:focus {
+.btn-outline.inverse:focus {
   box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
 }
 

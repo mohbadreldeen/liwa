@@ -1,7 +1,5 @@
- 
-.btn-outline 
-.btn-outline {
-	button,a {
+.btn-primary {
+	button, a {
 		background-color: var(--color-primary);
 		color: var(--color-text-inverse);
 		border: none;
@@ -25,9 +23,9 @@
 	}
 }
 
-.btn-outline 
+
 .btn-outline {
-	button,a{
+	button, a{
 		background-color: transparent;
 		border-color: #95684B;
 		color: #95684B;
