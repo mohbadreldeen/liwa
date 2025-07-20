@@ -1456,7 +1456,8 @@ p {
   box-shadow: 0 0 0 0.2rem rgba(149, 104, 75, 0.5);
 }
 .btn-outline.inverse {
-  background-color: #fff;
+  background-color: transparent;
+  border: 1px solid #F4F4F4;
   border-color: #fff;
   color: #fff;
 }
