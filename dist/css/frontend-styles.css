@@ -347,10 +347,10 @@ input,
 select,
 optgroup,
 textarea {
-  color: #404040;
+  color: #727476;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 2;
 }
 
 h1,
@@ -360,6 +360,7 @@ h4,
 h5,
 h6 {
   clear: both;
+  margin: 0;
 }
 
 p {
@@ -1498,6 +1499,7 @@ p {
   transform-style: preserve-3d;
   transform-origin: center center;
   will-change: transform;
+  margin: 10px 50px 70px;
 }
 .liwa-tilt-image .tilt-image-wrapper.tilt-hovering {
   transition: none;
