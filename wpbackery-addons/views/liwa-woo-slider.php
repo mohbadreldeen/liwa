@@ -39,9 +39,12 @@ $autoplay_delay = !empty($atts['autoplay_delay']) ? intval($atts['autoplay_delay
 $loop = !empty($atts['loop']);
 $speed = !empty($atts['speed']) ? intval($atts['speed']) : 300;
 $theme = !empty($atts['theme']) ? $atts['theme'] : 'light';
+$product_style = !empty($atts['product_style']) ? $atts['product_style'] : 'style-1';
+$description_word_limit = !empty($atts['description_word_limit']) ? intval($atts['description_word_limit']) : 7;
+$el_class = !empty($atts['el_class']) ? $atts['el_class'] : '';
 
 // Build CSS classes
-$css_classes = array('liwa-woo-slider', 'swiper');
+$css_classes = array('liwa-woo-slider', 'swiper', 'product-' . $product_style);
 if (!empty($el_class)) {
     $css_classes[] = sanitize_html_class($el_class);
 }
@@ -171,6 +174,9 @@ if ($products->have_posts()) {
         ?>
         <div class="swiper-slide">
             <?php
+            // Set the product style as wrapper class for different styling
+            $wrapper_class = 'product-item product-item-' . $product_style;
+            
             // Include the product item template
             include LIWA_THEME_PATH . 'wpbackery-addons/views/product-item.php';
             ?>

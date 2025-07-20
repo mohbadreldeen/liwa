@@ -1,11 +1,24 @@
-.product-item{
+.product-item {
 	background:#fff;
 	box-shadow: 0 20px 24px rgba(0, 0, 0, 0.04);
 	padding: 25px;
 
 	display: flex;
-	flex-direction: column;
+	
 	border-radius: 28px;
+
+	&.product-item-style-1{
+		flex-direction: column;
+	}
+	&.product-item-style-2{
+		gap: 20px;
+		align-items: center;
+		flex-direction: row;
+		.product-image img{
+			width: auto;
+			max-height: 200px;
+		}
+	}
 	.product-title a{
 		color: #000;
 		text-decoration: none;
@@ -30,4 +43,50 @@
 			color:#704E38;
 		 }
 	}
+	
+	// Product Item Style 1 (Default - Modern Card Style)
+	&.product-item-style-1 {
+		// Already defined above - this is the default style
+		background: #fff;
+		border-radius: 28px;
+		box-shadow: 0 20px 24px rgba(0, 0, 0, 0.04);
+		padding: 25px;
+		transition: all 0.3s ease;
+		
+		&:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 30px 35px rgba(0, 0, 0, 0.08);
+		}
+		
+		.product-image {
+			margin-bottom: 15px;
+			border-radius: 20px;
+			overflow: hidden;
+			
+			img {
+				transition: transform 0.3s ease;
+			}
+			
+			&:hover img {
+				transform: scale(1.05);
+			}
+		}
+		
+		.product-title a {
+			font-size: 24px;
+			font-weight: 700;
+			margin-bottom: 10px;
+		}
+		
+		.product-description {
+			font-size: 18px;
+			color: #727476;
+			margin-bottom: 15px;
+		}
+	}
+	
+ 
 }
+
+
+ 

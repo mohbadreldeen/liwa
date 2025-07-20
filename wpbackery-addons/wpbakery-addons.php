@@ -202,6 +202,8 @@ function liwa_woo_slider_shortcode($atts, $content = null) {
         'loop' => '',
         'speed' => '300',
         'theme' => 'light',
+        'product_style' => 'style-1',
+        'description_word_limit' => '7',
         'el_class' => '',
     ), $atts);
     

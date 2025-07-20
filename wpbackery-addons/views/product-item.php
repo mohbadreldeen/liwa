@@ -44,7 +44,7 @@ $show_sale_badge = isset($show_sale_badge) ? $show_sale_badge : true;
 $show_featured_badge = isset($show_featured_badge) ? $show_featured_badge : true;
 $show_rating = isset($show_rating) ? $show_rating : true;
 $show_description = isset($show_description) ? $show_description : true;
-$description_word_limit = isset($description_word_limit) ? intval($description_word_limit) : 5;
+$description_word_limit = isset($description_word_limit) ? intval($description_word_limit) : 7;
 $show_add_to_cart = isset($show_add_to_cart) ? $show_add_to_cart : true;
 $image_size = isset($image_size) ? $image_size : 'woocommerce_thumbnail';
 ?>

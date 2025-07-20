@@ -203,6 +203,26 @@ return [
             'group' => __('Appearance', 'liwadates'),
         ],
         [
+            'type' => 'dropdown',
+            'heading' => __('Product Item Style', 'liwadates'),
+            'param_name' => 'product_style',
+            'value' => [
+                __('Style 1', 'liwadates') => 'style-1',
+                __('Style 2', 'liwadates') => 'style-2',
+            ],
+            'std' => 'style-1',
+            'description' => __('Choose the visual style for product items', 'liwadates'),
+            'group' => __('Appearance', 'liwadates'),
+        ],
+        [
+            'type' => 'textfield',
+            'heading' => __('Description Word Limit', 'liwadates'),
+            'param_name' => 'description_word_limit',
+            'value' => '7',
+            'description' => __('Maximum number of words to show in product description (default: 7)', 'liwadates'),
+            'group' => __('Appearance', 'liwadates'),
+        ],
+        [
             'type' => 'textfield',
             'heading' => __('Custom CSS Class', 'liwadates'),
             'param_name' => 'el_class',

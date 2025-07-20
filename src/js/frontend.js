@@ -63,7 +63,7 @@ window.liwaInitTabs = function(container) {
     const li = document.createElement('li');
     const a = document.createElement('a');
     
-    a.href = '#';
+    a.href = 'javascript:void(0)'; // Prevent page jumping
     a.dataset.tabIndex = index;
     
     // Add active class to the specified tab
@@ -240,6 +240,18 @@ function initSimpleTabContainer(container) {
   // Mark as initialized
   container.setAttribute('data-tabs-initialized', 'true');
   
+  // Add global click prevention for any links in tab navigation
+  container.addEventListener('click', function(e) {
+    if (e.target.closest('.liwa-tabs-nav')) {
+      // If clicked element is a link or inside a link
+      const link = e.target.tagName === 'A' ? e.target : e.target.closest('a');
+      if (link && (link.getAttribute('href') === '#' || link.getAttribute('href') === '')) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }
+  });
+  
   // Set up accessibility attributes
   setupSimpleTabsAccessibility(container, navItems, contentItems);
   
@@ -247,8 +259,21 @@ function initSimpleTabContainer(container) {
   navItems.forEach((navItem, index) => {
     navItem.addEventListener('click', function(e) {
       e.preventDefault();
+      e.stopPropagation();
+      // Prevent any default behavior that could cause scrolling
+      if (e.target.tagName === 'A') {
+        e.target.blur();
+      }
       activateSimpleTab(container, index, navItems, contentItems);
     });
+    
+    // Also prevent clicks on any child links
+    navItem.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' || e.target.closest('a')) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true); // Use capture phase
     
     // Add keyboard navigation
     navItem.addEventListener('keydown', function(e) {
@@ -323,9 +348,9 @@ function activateSimpleTab(container, index, navItems, contentItems) {
     // Reinitialize Swiper sliders in the newly active tab
     reinitializeSwiperInTab(contentItems[index]);
     
-    // Focus management for accessibility
+    // Focus management for accessibility - but prevent scrolling
     if (document.activeElement === navItems[index]) {
-      contentItems[index].focus();
+      contentItems[index].focus({ preventScroll: true });
     }
     
     // Dispatch custom event
