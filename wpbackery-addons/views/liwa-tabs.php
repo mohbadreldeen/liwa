@@ -116,7 +116,6 @@ function liwa_tabs_shortcode($atts, $content = null) {
                         if ($image_url): ?>
                             <img src="<?php echo esc_url($image_url); ?>" 
                                  alt="<?php echo esc_attr($tab['title']); ?>" 
-                                 style="width: <?php echo esc_attr($icon_size); ?>px; height: <?php echo esc_attr($icon_size); ?>px; object-fit: cover;" 
                                  class="liwa-tab-image" />
                         <?php endif;
                     endif; ?>
