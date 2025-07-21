@@ -260,7 +260,7 @@ function liwa_scripts() {
             'ld-frontend-css',
             LIWA_THEME_URL . '/dist/css/frontend.css',
             array(),
-            LIWA_VERSION
+            time()
         );
         
         // Enqueue custom frontend styles
@@ -270,14 +270,14 @@ function liwa_scripts() {
 				'ld-frontend-styles-rtl-css',
 				LIWA_THEME_URL . '/dist/css/frontend-styles-rtl.css',
 				array('ld-frontend-css'),
-				LIWA_VERSION
+				time()
 			);
 		}else {
 			wp_enqueue_style(
 				'ld-frontend-styles-css',
 				LIWA_THEME_URL . '/dist/css/frontend-styles.css',
 				array('ld-frontend-css'), // Make it depend on the main frontend CSS
-				LIWA_VERSION
+				time()
 			);
 		}
         

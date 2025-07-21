@@ -10823,6 +10823,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   (0,_componetns_language_switcher__WEBPACK_IMPORTED_MODULE_6__["default"])();
 
+  // Initialize hamburger menu
+  initHamburgerMenu();
+
   // Initialize extended tabs
   // initLiwaTabs();
   // initExtendedNativeTabs();
@@ -11603,6 +11606,64 @@ function initializeSingleSwiper(swiperElement) {
     });
   }
   return swiper;
+}
+
+/**
+ * Initialize Hamburger Menu Functionality
+ * Handles the mobile menu toggle
+ */
+function initHamburgerMenu() {
+  var menuToggle = document.querySelector('.menu-toggle');
+  var mainNavigation = document.querySelector('.main-navigation');
+  var hamburgerIcon = document.querySelector('.hamburger-icon');
+  if (!menuToggle || !mainNavigation) return;
+
+  // Handle menu toggle click
+  menuToggle.addEventListener('click', function (e) {
+    e.preventDefault();
+    var isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    var newState = !isExpanded;
+
+    // Update aria-expanded attribute
+    menuToggle.setAttribute('aria-expanded', newState);
+
+    // Toggle the navigation class
+    if (newState) {
+      mainNavigation.classList.add('toggled');
+      hamburgerIcon.classList.add('active');
+    } else {
+      mainNavigation.classList.remove('toggled');
+      hamburgerIcon.classList.remove('active');
+    }
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!mainNavigation.contains(e.target) && mainNavigation.classList.contains('toggled')) {
+      mainNavigation.classList.remove('toggled');
+      hamburgerIcon.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Handle escape key to close menu
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mainNavigation.classList.contains('toggled')) {
+      mainNavigation.classList.remove('toggled');
+      hamburgerIcon.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.focus(); // Return focus to toggle button
+    }
+  });
+
+  // Close menu on window resize if it becomes desktop size
+  window.addEventListener('resize', function () {
+    if (window.innerWidth >= 768 && mainNavigation.classList.contains('toggled')) {
+      mainNavigation.classList.remove('toggled');
+      hamburgerIcon.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
 }
 
 // Initialize Advanced Tabs

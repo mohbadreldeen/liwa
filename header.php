@@ -34,9 +34,14 @@
 			  ?>
 		</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation">
+	 
+	<nav id="site-navigation" class="main-navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-				<?php esc_html_e( 'Primary Menu', 'liwa' ); ?>
+				<span class="hamburger-icon" aria-hidden="true">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
 			</button>
 			<?php
 			wp_nav_menu(
@@ -47,12 +52,13 @@
 			);
 			?>
 		</nav><!-- #site-navigation -->
+		 
 
 		<div class="header-widgets">
 			<?php get_template_part( 'template-parts/header/cart' ); ?>
 			<?php get_template_part( 'template-parts/header/language-switcher' ); ?>
 
-			<div>
+			<div class="secondary-menu">
 				<?php 
 					wp_nav_menu(
 						array(
@@ -66,3 +72,22 @@
 			
 		</div>
 	</header><!-- #masthead -->
+	<header id="masthead-wide" class="site-header site-header-wide">
+		<nav id="site-navigation-wide" class="main-navigation">
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="hamburger-icon" aria-hidden="true">
+						<span></span>
+						<span></span>
+						<span></span>
+					</span>
+				</button>
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-primary',
+						'menu_id'        => 'primary-menu',
+					)
+				);
+				?>
+			</nav><!-- #site-navigation -->
+	</header>

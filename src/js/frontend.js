@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   languageSwitcher();
   
+  // Initialize hamburger menu
+  initHamburgerMenu();
+  
   // Initialize extended tabs
   // initLiwaTabs();
   // initExtendedNativeTabs();
@@ -823,6 +826,66 @@ function initializeSingleSwiper(swiperElement) {
   }
   
   return swiper;
+}
+
+/**
+ * Initialize Hamburger Menu Functionality
+ * Handles the mobile menu toggle
+ */
+function initHamburgerMenu() {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mainNavigation = document.querySelector('.main-navigation');
+  const hamburgerIcon = document.querySelector('.hamburger-icon');
+  
+  if (!menuToggle || !mainNavigation) return;
+  
+  // Handle menu toggle click
+  menuToggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    const newState = !isExpanded;
+    
+    // Update aria-expanded attribute
+    menuToggle.setAttribute('aria-expanded', newState);
+    
+    // Toggle the navigation class
+    if (newState) {
+      mainNavigation.classList.add('toggled');
+      hamburgerIcon.classList.add('active');
+    } else {
+      mainNavigation.classList.remove('toggled');
+      hamburgerIcon.classList.remove('active');
+    }
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!mainNavigation.contains(e.target) && mainNavigation.classList.contains('toggled')) {
+      mainNavigation.classList.remove('toggled');
+      hamburgerIcon.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+  
+  // Handle escape key to close menu
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && mainNavigation.classList.contains('toggled')) {
+      mainNavigation.classList.remove('toggled');
+      hamburgerIcon.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.focus(); // Return focus to toggle button
+    }
+  });
+  
+  // Close menu on window resize if it becomes desktop size
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 768 && mainNavigation.classList.contains('toggled')) {
+      mainNavigation.classList.remove('toggled');
+      hamburgerIcon.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
 }
 
 // Initialize Advanced Tabs

@@ -84,3 +84,29 @@
   object-fit: cover;
   border-radius: 2px;
 }
+
+
+.active-language-flag{
+  display: none;
+}
+@media (max-width: 768px) {
+  .active-language-flag{
+    display: block;
+  }
+  .language-name,
+  .language-globe{
+    display: none;
+
+  }
+  // .header-language-switcher .dropdown-toggle {
+  //   font-size: 16px;
+  //   padding: 6px 10px;
+  // }
+  // .header-language-switcher .dropdown-menu {
+  //   min-width: 120px;
+  // }
+  // .header-language-switcher .dropdown-item a {
+  //   font-size: 14px;
+  //   padding: 8px 12px;
+  // }
+}
