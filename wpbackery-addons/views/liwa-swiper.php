@@ -63,6 +63,8 @@ $theme = isset($theme) ? $theme : 'light';
 
 <?php if (!empty($slider_content)): ?>
 
+<div class="swiper-outer-container">
+
 <div 
   class="<?php echo esc_attr(implode(' ', $css_classes)); ?>"
   id="<?php echo esc_attr($unique_id); ?>"
@@ -95,3 +97,4 @@ $theme = isset($theme) ? $theme : 'light';
     <p><?php echo esc_html($no_content_message); ?></p>
   </div>
 <?php endif; ?>
+</div>

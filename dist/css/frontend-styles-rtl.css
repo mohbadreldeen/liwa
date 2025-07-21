@@ -1484,12 +1484,13 @@ p {
   background-color: #C8B08C;
 }
 
-.swiper-wrapper {
-  gap: 20px;
+.swiper-outer-container {
+  padding: 0 30px;
+  overflow: hidden;
+  margin: 0 -30px;
 }
-
-.vc_element.swiper-slide {
-  margin-right: 0 !important;
+.swiper-outer-container .swiper {
+  overflow: visible;
 }
 
 /* ----------------   Icon Font --------------------------------------------- */
@@ -1648,6 +1649,7 @@ p {
   box-shadow: 0 20px 24px rgba(0, 0, 0, 0.04);
   padding: 25px;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 .card:hover {
   transform: translateY(-5px);
@@ -1690,7 +1692,6 @@ p {
 
 .footer-column h2.widget-title {
   font-size: 22px;
-  margin-bottom: 30px;
 }
 
 .footer-column .menu a {

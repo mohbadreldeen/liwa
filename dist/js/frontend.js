@@ -11500,15 +11500,15 @@ function initializeSingleSwiper(swiperElement) {
     loop: true,
     modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Scrollbar],
     slidesPerView: 1,
-    spaceBetween: 20,
+    spaceBetween: 50,
     breakpoints: {
       768: {
         slidesPerView: 2,
-        spaceBetween: 20
+        spaceBetween: 50
       },
       1024: {
         slidesPerView: 3,
-        spaceBetween: 30
+        spaceBetween: 50
       }
     },
     pagination: {

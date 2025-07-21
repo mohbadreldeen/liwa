@@ -96,9 +96,12 @@
 	opacity: 1;
 	background-color: #C8B08C;
 }
-.swiper-wrapper{
-	gap: 20px;
+
+.swiper-outer-container {
+	padding: 0 30px;
+    overflow: hidden;
+    margin: 0 -30px;
+	.swiper {
+		overflow: visible;
+	}
 }
- .vc_element.swiper-slide{
-	margin-right: 0 !important;
- }

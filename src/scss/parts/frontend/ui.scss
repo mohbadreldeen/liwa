@@ -76,6 +76,7 @@
 	box-shadow: 0 20px 24px rgba(0, 0, 0, 0.04);
 	padding: 25px;
 	transition: all 0.3s ease;
+	box-sizing: border-box;
 
 	&:hover {
 		transform: translateY(-5px);
