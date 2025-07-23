@@ -26,6 +26,10 @@
 .fbc-page .fbc-wrap .fbc-items li a:hover{
 	color:#FFFFFF !important;
 }
+
+.fbc-page .fbc-wrap .fbc-items li:first-child{
+	padding:0 !important;
+}
 .rtl .fbc-separator {
 	transform: rotate(0);	
 }
