@@ -61,9 +61,11 @@
     }
     
     // Different border radius options
-    &.tilt-rounded {
-        border-radius: 15px;
+    &.tilt-rounded img,
+    .tilt-image-wrapper{
+        border-radius: 25px;
     }
+    
     
     &.tilt-circle {
         border-radius: 50%;
@@ -112,8 +114,4 @@
 
 .liwa-tilt-image.tilt-animate-in {
     animation: tiltImageFadeIn 0.8s ease-out forwards;
-}
-
-.tilt-rounded{
-	border-radius: 25px;
 }
