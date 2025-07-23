@@ -16,9 +16,9 @@
 @use 'parts/frontend/custom';
 
 .border-heading{
-	border-right: 10px solid #95684b;
-	border-left: 10px solid #95684b;
+	border-right: 0px solid #95684b;
+	border-left: 5px solid #95684b;
     padding-right: 0;
     padding-left: 15px;
-	text-align: left;
+	text-align: left !important;
 }
