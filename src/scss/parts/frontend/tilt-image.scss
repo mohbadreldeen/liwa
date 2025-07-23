@@ -4,6 +4,7 @@
     overflow: hidden;
     position: relative;
     border-radius: 8px;
+    overflow: visible;
     
     .tilt-image-wrapper {
         position: relative;
@@ -64,6 +65,7 @@
     &.tilt-rounded img,
     .tilt-image-wrapper{
         border-radius: 25px;
+        height: 100%;
     }
     
     

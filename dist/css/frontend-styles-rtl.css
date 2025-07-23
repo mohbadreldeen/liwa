@@ -1684,6 +1684,7 @@ p {
   overflow: hidden;
   position: relative;
   border-radius: 8px;
+  overflow: visible;
 }
 .liwa-tilt-image .tilt-image-wrapper {
   position: relative;
@@ -1728,6 +1729,7 @@ p {
 .liwa-tilt-image.tilt-rounded img,
 .liwa-tilt-image .tilt-image-wrapper {
   border-radius: 25px;
+  height: 100%;
 }
 .liwa-tilt-image.tilt-circle {
   border-radius: 50%;
