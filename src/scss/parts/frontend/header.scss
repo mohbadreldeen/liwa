@@ -49,7 +49,7 @@
 	text-decoration: none;
 	color: var(--color-text);
 	font-family: var(--font-family);
-  	font-weight: 700;
+  	font-weight: 500;
 }
 .main-navigation a:hover,
 .main-navigation .current_page_item a{
@@ -69,7 +69,7 @@
 
 	.main-navigation ul {
 		display: flex;
-		gap:50px;
+		gap: 60px;
 	}
 }
 

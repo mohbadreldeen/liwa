@@ -1,6 +1,6 @@
 .site-footer{
 	background-image: url('./images/footer-optimize.webp');
-	padding: 50px 0;
+	padding: 50px 20px;
 	color: var(--color-text-inverse);
 }
 .bottom-footer{
@@ -19,6 +19,7 @@
 	display: flex;
 	justify-content: space-between;
 	gap: 30px;
+	flex-wrap: wrap;
 }
 .footer-column .menu {
 	display: flex;
