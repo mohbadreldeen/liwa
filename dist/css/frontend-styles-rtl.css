@@ -1693,7 +1693,6 @@ p {
   transform-style: preserve-3d;
   transform-origin: center center;
   will-change: transform;
-  margin: 10px 50px 70px;
 }
 .liwa-tilt-image .tilt-image-wrapper.tilt-hovering {
   transition: none;
@@ -1703,6 +1702,7 @@ p {
   height: auto;
   display: block;
   border-radius: inherit;
+  object-fit: cover;
 }
 .liwa-tilt-image .tilt-overlay {
   position: absolute;

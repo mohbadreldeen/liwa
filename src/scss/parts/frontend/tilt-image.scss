@@ -13,8 +13,6 @@
         transform-style: preserve-3d;
         transform-origin: center center;
         will-change: transform;
-        margin: 10px 50px 70px;
-        
         // When hovering, apply the transform
         &.tilt-hovering {
             transition: none; // Disable transition during mouse movement
@@ -25,6 +23,7 @@
             height: auto;
             display: block;
             border-radius: inherit;
+            object-fit: cover;
         }
     }
     
