@@ -14,3 +14,11 @@
 @use 'parts/frontend/footer';
 @use 'parts/frontend/shop';
 @use 'parts/frontend/custom';
+
+.border-heading{
+	border-right: 10px solid #95684b;
+	border-left: 10px solid #95684b;
+    padding-right: 0;
+    padding-left: 15px;
+	text-align: left;
+}
