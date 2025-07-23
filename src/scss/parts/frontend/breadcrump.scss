@@ -1,0 +1,31 @@
+.fbc-page .fbc-wrap .fbc-items{
+	background-color: transparent !important;
+	display: flex;
+	align-items: center;
+}
+
+.fbc-page .fbc-wrap .fbc-items li{
+	padding: 0;
+}
+.fbc-separator {
+	display: flex;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAKCAYAAACXDi8zAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABMSURBVHgBfY7LDcAwCENjT9DRukGzWfcBhskEJORKPpYQ4gGWUZJEpJJszBDAv1yqajez7w5jeBcYors/5aSt1WmJXdyoivw5w8w+AHZVPPh4yaxoAAAAAElFTkSuQmCC);
+    background-repeat: no-repeat;
+	transform: rotate(180deg);
+}
+
+.fbc-page .fbc-wrap .fbc-items li.active span, .fbc-page .fbc-wrap .fbc-items li .fbc-end-text,
+.fbc-page .fbc-wrap .fbc-items li a{
+	color: #CBCBCB !important;
+	text-decoration: none;	
+	font-size: 18px;
+}
+.fbc-page .fbc-wrap .fbc-items li a:hover{
+	color:#FFFFFF !important;
+}
+.rtl .fbc-separator {
+	transform: rotate(0);	
+}
