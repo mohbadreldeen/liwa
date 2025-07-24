@@ -44,12 +44,12 @@
 	vertical-align: middle !important;
 }
 .aio-icon-component h3{
-	font-weight: 400;
+	font-weight: 400 !important;
 }
 .align-left{
 	text-align: left !important;
-	.stats-top .aio-icon-top, .stats-top .stats-desc{
-		text-align: left !important;
-	}
+}
+.align-left.stats-top .stats-desc{
+	text-align: left !important;
 }
 

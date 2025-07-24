@@ -34,8 +34,8 @@
 	}
 	.align-left{
 		text-align: right !important;
-		.stats-top .aio-icon-top, .stats-top .stats-desc{
-			
-		}
+	}
+	.align-left.stats-top .stats-desc{
+		text-align: right !important;
 	}
 }
