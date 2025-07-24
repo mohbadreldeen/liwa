@@ -25,3 +25,10 @@
     padding-left: 15px;
 	text-align: left !important;
 }
+
+.rtl {
+	.top-icon .aio-icon-description,
+	.top-icon .aio-icon-header{
+		text-align: right;
+	}
+}
