@@ -3,17 +3,18 @@
   \*****************************************************************************************************************/
 :root {
   --color-primary: #77533C;
+  --color-primary-800: #5f4230;
   --color-primary-dark: #1D130D;
   --color-background: #ffffff;
-  --color-background-inverse: var(--color-primary);
+  --color-background-inverse: #77533C;
   --color-heading: #000;
   --color-text: #323334;
   --color-heading-inverse: hsl(23, 26%, 83%);
-  --color-text-inverse: #DCDDDE;
+  --color-text-inverse: #F4F4F4;
   --color-border: #8F9194;
-  --color-link: var(--color-primary);
-  --color-link-hover: var(--color-heading);
-  --font-family: "Almarai", sans-serif;
+  --color-link: #77533C;
+  --color-link-hover: #000;
+  --font-family: Almarai, sans-serif;
   --font-size-base: 16px;
   --line-height-base: 1.5;
   --font-weight-normal: 400;
@@ -1662,6 +1663,74 @@ p {
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 30px 35px rgba(0, 0, 0, 0.08);
+}
+
+.vc_btn3.vc_btn3-size-lg {
+  font-size: 18px !important;
+  padding: 18px 35px !important;
+}
+
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-outline,
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-flat {
+  position: relative;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  overflow: hidden;
+}
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-outline::before, .vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-outline::after,
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-flat::before,
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-flat::after {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100px) skewX(-15deg);
+  content: "";
+}
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-outline::before,
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-flat::before {
+  width: 60px;
+  background: rgba(255, 255, 255, 0.5);
+  filter: blur(30px);
+  opacity: 0.5;
+}
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-outline::after,
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-flat::after {
+  width: 30px;
+  left: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  filter: blur(5px);
+}
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-outline:hover,
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-flat:hover {
+  background-color: var(--color-primary-800);
+  border-color: var(--color-primary-800);
+  color: #fff;
+}
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-outline:hover::before,
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-flat:hover::before {
+  opacity: 1;
+}
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-outline:hover::before, .vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-outline:hover::after,
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-flat:hover::before,
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-flat:hover::after {
+  transform: translateX(300px) skewX(-15deg);
+  transition: all 0.9s ease;
+}
+
+.vc_do_btn .vc_btn3.vc_btn3-color-grey.vc_btn3-style-outline {
+  background-color: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.vc_btn3-inline {
+  margin-right: 20px;
+}
+
+.rtl .vc_btn3-inline {
+  margin-left: 20px;
 }
 
 /* Tilt Image Styles */

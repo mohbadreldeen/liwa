@@ -1,19 +1,58 @@
+$color-primary: #77533C;
+$color-primary-800:#5f4230;
+$color-primary-dark: #1D130D;
+$color-background: #ffffff;
+$color-background-inverse: $color-primary;
+$color-heading: #000;
+$color-text: #323334;
+$color-heading-inverse: hsl(23, 26%, 83%);
+$color-text-inverse: #F4F4F4;
+$color-border: #8F9194;
+
+$color-link: $color-primary;
+$color-link-hover: $color-heading;
+$font-family: 'Almarai', sans-serif;
+$font-size-base: 16px;
+$line-height-base: 1.5;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
 :root {
-	--color-primary: #77533C;
-	--color-primary-dark: #1D130D;
-	--color-background: #ffffff;
-	--color-background-inverse: var(--color-primary);
-	--color-heading: #000;
-	--color-text: #323334;
-	--color-heading-inverse: hsl(23, 26%, 83%);
-	--color-text-inverse: #DCDDDE;
-	--color-border: #8F9194;
+	--color-primary: #{$color-primary};
+	--color-primary-800: #{$color-primary-800};
+	--color-primary-dark: #{$color-primary-dark};
+	--color-background: #{$color-background};
+	--color-background-inverse: #{$color-background-inverse};
+	--color-heading: #{$color-heading};
+	--color-text: #{$color-text};
+	--color-heading-inverse: #{$color-heading-inverse};
+	--color-text-inverse: #{$color-text-inverse};
+	--color-border: #{$color-border};
 	
-	--color-link: var(--color-primary);
-	--color-link-hover: var(--color-heading);
-	--font-family: 'Almarai', sans-serif;
-	--font-size-base: 16px;
-	--line-height-base: 1.5;
-	--font-weight-normal: 400;
-	--font-weight-bold: 700;
+	--color-link: #{$color-link};
+	--color-link-hover: #{$color-link-hover};
+	--font-family: #{$font-family};
+	--font-size-base: #{$font-size-base};
+	--line-height-base: #{$line-height-base};
+	--font-weight-normal: #{$font-weight-normal};
+	--font-weight-bold: #{$font-weight-bold};
 }
+// :root {
+// 	--color-primary: #77533C;
+// 	--color-primary-dark: #1D130D;
+// 	--color-background: #ffffff;
+// 	--color-background-inverse: var(--color-primary);
+// 	--color-heading: #000;
+// 	--color-text: #323334;
+// 	--color-heading-inverse: hsl(23, 26%, 83%);
+// 	--color-text-inverse: #F4F4F4;
+// 	--color-border: #8F9194;
+	
+// 	--color-link: var(--color-primary);
+// 	--color-link-hover: var(--color-heading);
+// 	--font-family: 'Almarai', sans-serif;
+// 	--font-size-base: 16px;
+// 	--line-height-base: 1.5;
+// 	--font-weight-normal: 400;
+// 	--font-weight-bold: 700;
+// }
